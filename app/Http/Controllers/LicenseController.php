@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLicenseRequest;
 use App\Http\Requests\UpdateLicenseRequest;
 use App\Models\License;
+use Inertia\Inertia;
 
 class LicenseController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(License::class, 'license');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,11 +27,11 @@ class LicenseController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function create()
     {
-        //
+        return Inertia::render('Licenses/Create');
     }
 
     /**

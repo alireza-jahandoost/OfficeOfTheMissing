@@ -29,3 +29,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::prefix('admin')->middleware('auth')->group(function(){
+    Route::resources([
+        'licenses' => \App\Http\Controllers\LicenseController::class,
+    ]);
+});

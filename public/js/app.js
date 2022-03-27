@@ -5569,6 +5569,16 @@ function Dashboard(props) {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Licenses/Create.js":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Licenses/Create.js ***!
+  \***********************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Welcome.js":
 /*!***************************************!*\
   !*** ./resources/js/Pages/Welcome.js ***!
@@ -59093,6 +59103,8 @@ var map = {
 	"./Auth/VerifyEmail.js": "./resources/js/Pages/Auth/VerifyEmail.js",
 	"./Dashboard": "./resources/js/Pages/Dashboard.js",
 	"./Dashboard.js": "./resources/js/Pages/Dashboard.js",
+	"./Licenses/Create": "./resources/js/Pages/Licenses/Create.js",
+	"./Licenses/Create.js": "./resources/js/Pages/Licenses/Create.js",
 	"./Welcome": "./resources/js/Pages/Welcome.js",
 	"./Welcome.js": "./resources/js/Pages/Welcome.js"
 };

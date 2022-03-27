@@ -41,7 +41,7 @@ class LicensePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->is_admin;
     }
 
     /**
