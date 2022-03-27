@@ -17,7 +17,11 @@ class PropertyTypeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->text(20),
+            'value_type' => 'text',
+            'hint' => $this->faker->text(50),
+            'show_to_finder' => false,
+            'show_to_loser' => false,
         ];
     }
 }

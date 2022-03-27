@@ -60,10 +60,18 @@ class LicenseController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\License  $license
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy(License $license)
     {
-        //
+        foreach ($license->founds as $model){
+            $model->properties()->delete();
+        }
+
+        foreach ($license->losts as $model){
+            $model->properties()->delete();
+        }
+        $license->delete();
+        return redirect()->route('licenses.index');
     }
 }

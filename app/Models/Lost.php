@@ -8,4 +8,28 @@ use Illuminate\Database\Eloquent\Model;
 class Lost extends Model
 {
     use HasFactory;
+
+    /**
+     * Relationship between lost and user
+     */
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Relationship between lost and license
+     */
+    public function license(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(License::class);
+    }
+
+    /**
+     * Relationship between lost and property
+     */
+    public function properties(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->morphMany(Property::class,'propertiable');
+    }
 }

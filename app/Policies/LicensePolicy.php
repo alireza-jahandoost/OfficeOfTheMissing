@@ -53,6 +53,6 @@ class LicensePolicy
      */
     public function delete(User $user, License $license)
     {
-        //
+        return $user->is_admin;
     }
 }

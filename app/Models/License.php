@@ -8,4 +8,28 @@ use Illuminate\Database\Eloquent\Model;
 class License extends Model
 {
     use HasFactory;
+
+    /**
+     *  Relationship between license and property type
+     */
+    public function propertyTypes(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PropertyType::class);
+    }
+
+    /**
+     * Relationship between license and found
+     */
+    public function founds(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Found::class);
+    }
+
+    /**
+     * Relationship between license and lost
+     */
+    public function losts(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Lost::class);
+    }
 }
