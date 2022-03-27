@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('losts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('license_id')->constrained()->onDelete('cascade');
+            $table->boolean('found')->default(false);
             $table->timestamps();
         });
     }

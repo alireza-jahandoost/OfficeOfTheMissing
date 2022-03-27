@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('property_types', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('license_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('value_type');
+            $table->string('hint');
+            $table->boolean('show_to_finder');
+            $table->boolean('show_to_loser');
             $table->timestamps();
         });
     }

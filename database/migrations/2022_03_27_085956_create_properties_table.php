@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
+            $table->integer('propertiable_id');
+            $table->string('propertiable_type');
+            $table->string('value');
             $table->timestamps();
         });
     }
