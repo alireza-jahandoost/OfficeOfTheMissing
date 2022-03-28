@@ -427,7 +427,4 @@ class StoreTest extends TestCase
         $this->assertDatabaseCount(Property::class, 0);
     }
 
-    // todo: guest user can not create
-    // todo: admin can not create
-
 }
