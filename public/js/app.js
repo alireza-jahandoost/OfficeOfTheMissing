@@ -5579,6 +5579,59 @@ function Dashboard(props) {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Licenses/Index.js":
+/*!**********************************************!*\
+  !*** ./resources/js/Pages/Licenses/Index.js ***!
+  \**********************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Licenses/Show.js":
+/*!*********************************************!*\
+  !*** ./resources/js/Pages/Licenses/Show.js ***!
+  \*********************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Losts/Create.js":
+/*!********************************************!*\
+  !*** ./resources/js/Pages/Losts/Create.js ***!
+  \********************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Losts/Edit.js":
+/*!******************************************!*\
+  !*** ./resources/js/Pages/Losts/Edit.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var EditLosts = function EditLosts(props) {
+  console.log(props);
+  return null;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditLosts);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Welcome.js":
 /*!***************************************!*\
   !*** ./resources/js/Pages/Welcome.js ***!
@@ -59105,6 +59158,14 @@ var map = {
 	"./Dashboard.js": "./resources/js/Pages/Dashboard.js",
 	"./Licenses/Create": "./resources/js/Pages/Licenses/Create.js",
 	"./Licenses/Create.js": "./resources/js/Pages/Licenses/Create.js",
+	"./Licenses/Index": "./resources/js/Pages/Licenses/Index.js",
+	"./Licenses/Index.js": "./resources/js/Pages/Licenses/Index.js",
+	"./Licenses/Show": "./resources/js/Pages/Licenses/Show.js",
+	"./Licenses/Show.js": "./resources/js/Pages/Licenses/Show.js",
+	"./Losts/Create": "./resources/js/Pages/Losts/Create.js",
+	"./Losts/Create.js": "./resources/js/Pages/Losts/Create.js",
+	"./Losts/Edit": "./resources/js/Pages/Losts/Edit.js",
+	"./Losts/Edit.js": "./resources/js/Pages/Losts/Edit.js",
 	"./Welcome": "./resources/js/Pages/Welcome.js",
 	"./Welcome.js": "./resources/js/Pages/Welcome.js"
 };

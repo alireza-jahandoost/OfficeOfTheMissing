@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\License;
 use App\Models\Lost;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -51,9 +52,9 @@ class LostPolicy
      * @param  \App\Models\Lost  $lost
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Lost $lost)
+    public function update(User $user, Lost $lost, License $license)
     {
-        //
+        return $lost->user_id === $user->id && $lost->license_id === $license->id;
     }
 
     /**

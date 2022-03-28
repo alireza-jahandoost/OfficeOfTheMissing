@@ -6,15 +6,12 @@ use App\Http\Requests\StoreLostRequest;
 use App\Http\Requests\UpdateLostRequest;
 use App\Models\License;
 use App\Models\Lost;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Testing\AssertableInertia;
 
 class LostController extends Controller
 {
-    public function __construct()
-    {
-        $this->authorizeResource(Lost::class, 'lost');
-    }
 
     /**
      * Display a listing of the resource.
@@ -33,6 +30,7 @@ class LostController extends Controller
      */
     public function create(License $license): \Inertia\Response
     {
+        $this->authorize('create', Lost::class);
         $propertyTypes = $license->propertyTypes()->exceptShowToFinder()
             ->get()->map(function($propertyType){
                 return collect($propertyType)->forget(['show_to_loser', 'show_to_finder']);
@@ -52,6 +50,7 @@ class LostController extends Controller
      */
     public function store(StoreLostRequest $request, License $license)
     {
+        $this->authorize('create', Lost::class);
         $data = $request->validated();
 
         $lost = new Lost;
@@ -93,12 +92,23 @@ class LostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Lost  $lost
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Lost $lost
+     * @return \Inertia\Response
+     * @throws \Exception
      */
-    public function edit(Lost $lost)
+    public function edit(License $license, Lost $lost): \Inertia\Response
     {
-        //
+        $this->authorize('update', [$lost, $license]);
+        $propertyTypes = $license->propertyTypes()->exceptShowToFinder()
+            ->get()->map(function($propertyType){
+                return collect($propertyType)->forget(['show_to_loser', 'show_to_finder']);
+            });
+
+        return Inertia::render('Losts/Edit',[
+            'license' => $license,
+            'property_types' => $propertyTypes,
+            'properties' => $lost->properties,
+        ]);
     }
 
     /**

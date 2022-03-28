@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int|mixed|string|null $user_id
  * @property mixed $license_id
+ * @property mixed $properties
  */
 class Lost extends Model
 {
