@@ -30,7 +30,7 @@ class LicensePolicy
      */
     public function view(User $user, License $license)
     {
-        //
+        return true;
     }
 
     /**

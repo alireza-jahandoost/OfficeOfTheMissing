@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('license_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('value_type');
-            $table->string('hint');
+            $table->string('hint')->nullable();
             $table->boolean('show_to_finder');
             $table->boolean('show_to_loser');
             $table->timestamps();

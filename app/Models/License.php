@@ -5,9 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static create(array $array)
+ * @property mixed $founds
+ * @property mixed $losts
+ */
 class License extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+    ];
 
     /**
      *  Relationship between license and property type
