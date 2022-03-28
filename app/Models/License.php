@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static create(array $array)
  * @property mixed $founds
  * @property mixed $losts
+ * @property mixed $propertyTypes
  */
 class License extends Model
 {

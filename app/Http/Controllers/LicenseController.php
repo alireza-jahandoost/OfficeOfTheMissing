@@ -71,11 +71,14 @@ class LicenseController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\License  $license
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function show(License $license)
     {
-        //
+        return Inertia::render('Licenses/Show',[
+            'license' => $license,
+            'property_types' => $license->propertyTypes
+        ]);
     }
 
     /**
