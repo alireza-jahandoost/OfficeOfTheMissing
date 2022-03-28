@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLostRequest;
 use App\Http\Requests\UpdateLostRequest;
 use App\Models\Lost;
+use Inertia\Inertia;
+use Inertia\Testing\AssertableInertia;
 
 class LostController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Lost::class, 'lost');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,11 +28,11 @@ class LostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function create()
     {
-        //
+        return Inertia::render('Losts/Create');
     }
 
     /**

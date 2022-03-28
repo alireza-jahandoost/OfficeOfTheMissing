@@ -34,3 +34,8 @@ Route::prefix('admin')->middleware('auth')->group(function(){
     Route::resource('licenses', \App\Http\Controllers\LicenseController::class)
         ->except(['edit','update']);
 });
+
+Route::middleware('auth')->group(function(){
+    Route::get('losts/create', [\App\Http\Controllers\LostController::class, 'create'])->name('losts.create');
+});
+
