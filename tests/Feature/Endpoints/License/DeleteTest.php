@@ -54,10 +54,10 @@ class DeleteTest extends TestCase
 
         $user = User::factory()->create();
 
-        $lost = Lost::factory()->for($user)->for($license)->hasProperties(1)->create();
+        $lost = Lost::factory()->for($user)->for($license)->hasProperties(1, ['property_type_id' => $propertyType->id])->create();
         $lostProperty = $lost->properties[0];
 
-        $found = Found::factory()->for($user)->for($license)->hasProperties(1)->create();
+        $found = Found::factory()->for($user)->for($license)->hasProperties(1, ['property_type_id' => $propertyType->id])->create();
         $foundProperty = $found->properties[0];
 
         $admin = User::factory()->create(['is_admin' => true]);

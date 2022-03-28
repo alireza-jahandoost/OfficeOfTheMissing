@@ -9,6 +9,11 @@ class Property extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'property_type_id',
+        'value',
+    ];
+
     /**
      * Relationship between property and property type
      */

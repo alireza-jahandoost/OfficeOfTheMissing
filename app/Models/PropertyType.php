@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static create(mixed $propertyType)
+ * @method static first()
  */
 class PropertyType extends Model
 {
@@ -20,6 +21,13 @@ class PropertyType extends Model
         'show_to_finder',
         'show_to_loser',
     ];
+
+    /**
+     * scope to get lost and global properties
+     */
+    public function scopeExceptShowToFinder($query){
+        return $query->where('show_to_loser', true);
+    }
 
     /**
      * Relationship between property type and license

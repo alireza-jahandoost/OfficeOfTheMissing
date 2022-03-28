@@ -35,7 +35,9 @@ Route::prefix('admin')->middleware('auth')->group(function(){
         ->except(['edit','update']);
 });
 
-Route::middleware('auth')->group(function(){
+Route::prefix('licenses/{license}')->middleware('auth')->group(function(){
     Route::get('losts/create', [\App\Http\Controllers\LostController::class, 'create'])->name('losts.create');
+    Route::post('losts', [\App\Http\Controllers\LostController::class, 'store'])->name('losts.store');
+    Route::get('losts/{lost}', [\App\Http\Controllers\LostController::class, 'show'])->name('losts.show');
 });
 

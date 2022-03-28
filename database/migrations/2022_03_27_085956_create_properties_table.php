@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('property_type_id')->constrained()->onDelete('cascade');
             $table->integer('propertiable_id');
             $table->string('propertiable_type');
             $table->string('value');
