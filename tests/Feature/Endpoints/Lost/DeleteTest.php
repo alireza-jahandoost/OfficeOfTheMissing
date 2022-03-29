@@ -17,8 +17,8 @@ class DeleteTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected const LOST_DELETE = 'losts.destroy';
-    protected const LOST_INDEX = 'losts.index';
+    protected const LOST_DELETE = 'licenses.losts.destroy';
+    protected const LOST_INDEX = 'licenses.losts.index';
 
     public function test_user_can_delete_their_lost()
     {

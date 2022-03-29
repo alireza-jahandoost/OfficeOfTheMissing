@@ -16,7 +16,7 @@ class IndexTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected const LOST_INDEX = 'losts.index';
+    protected const LOST_INDEX = 'licenses.losts.index';
 
     public function test_every_user_can_index_their_own_lost_models()
     {

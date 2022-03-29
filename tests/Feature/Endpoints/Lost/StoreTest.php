@@ -18,8 +18,8 @@ class StoreTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected const LOST_STORE = 'losts.store';
-    protected const LOST_SHOW = 'losts.show';
+    protected const LOST_STORE = 'licenses.losts.store';
+    protected const LOST_SHOW = 'licenses.losts.show';
 
     public function test_user_can_store_lost_model_with_type_text()
     {

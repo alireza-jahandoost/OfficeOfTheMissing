@@ -18,7 +18,7 @@ class ShowTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected const LOST_SHOW = 'losts.show';
+    protected const LOST_SHOW = 'licenses.losts.show';
 
     public function test_user_can_see_show_lost_models_page()
     {

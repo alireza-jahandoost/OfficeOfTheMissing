@@ -98,7 +98,7 @@ class LostController extends Controller
             }
         }
 
-        return redirect()->route('losts.show', [$license, $lost]);
+        return redirect()->route('licenses.losts.show', [$license, $lost]);
     }
 
     /**
@@ -179,7 +179,7 @@ class LostController extends Controller
             }
         }
 
-        return redirect()->route('losts.edit', [$license, $lost]);
+        return redirect()->route('licenses.losts.edit', [$license, $lost]);
     }
 
     /**
@@ -200,6 +200,6 @@ class LostController extends Controller
         $lost->properties()->delete();
         $lost->delete();
 
-        return redirect()->route('losts.index', $license);
+        return redirect()->route('licenses.losts.index', $license);
     }
 }

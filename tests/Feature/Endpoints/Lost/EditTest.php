@@ -19,7 +19,7 @@ class EditTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected const LOST_EDIT = 'losts.edit';
+    protected const LOST_EDIT = 'licenses.losts.edit';
 
     public function test_user_can_see_edit_page_for_their_losts()
     {

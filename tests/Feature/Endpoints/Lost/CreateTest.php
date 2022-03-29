@@ -14,7 +14,7 @@ class CreateTest extends TestCase
 {
      use RefreshDatabase;
 
-     protected const LOST_CREATE = 'losts.create';
+     protected const LOST_CREATE = 'licenses.losts.create';
 
     public function test_user_can_see_lost_creation_page()
     {

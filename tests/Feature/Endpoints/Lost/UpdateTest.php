@@ -18,8 +18,8 @@ class UpdateTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected const LOST_UPDATE = 'losts.update';
-    protected const LOST_EDIT = 'losts.edit';
+    protected const LOST_UPDATE = 'licenses.losts.update';
+    protected const LOST_EDIT = 'licenses.losts.edit';
 
     public function test_user_can_send_update_request_without_any_property()
     {
