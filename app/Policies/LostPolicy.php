@@ -18,9 +18,9 @@ class LostPolicy
      * @param User $user
      * @return Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): Response|bool
     {
-        //
+        return !$user->is_admin;
     }
 
     /**

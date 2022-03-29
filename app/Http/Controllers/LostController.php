@@ -6,6 +6,11 @@ use App\Http\Requests\StoreLostRequest;
 use App\Http\Requests\UpdateLostRequest;
 use App\Models\License;
 use App\Models\Lost;
+use Exception;
+use Faker\Calculator\Inn;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Testing\AssertableInertia;
@@ -16,11 +21,29 @@ class LostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
+     * @throws AuthorizationException
      */
-    public function index()
+    public function index(License $license): \Inertia\Response
     {
-        //
+        $this->authorize('viewAny', Lost::class);
+        $propertyTypes = $license->propertyTypes()->exceptShowToFinder()
+            ->get()->map(function($propertyType){
+                return collect($propertyType)->forget(['show_to_finder','show_to_loser']);
+            });
+
+        $losts = $license->losts()->where('user_id', auth()->id())->get()->reduce(function($carry, $lost){
+            $carry[] = [
+                'properties' => $lost->properties
+            ];
+            return $carry;
+        }, []);
+
+        return Inertia::render('Losts/Index', [
+            'license' => $license,
+            'property_types' => $propertyTypes,
+            'losts' => $losts,
+        ]);
     }
 
     /**
@@ -45,8 +68,8 @@ class LostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreLostRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param StoreLostRequest $request
+     * @return RedirectResponse
      */
     public function store(StoreLostRequest $request, License $license)
     {
@@ -81,9 +104,9 @@ class LostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Lost $lost
+     * @param Lost $lost
      * @return \Inertia\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function show(License $license, Lost $lost): \Inertia\Response
     {
@@ -102,9 +125,9 @@ class LostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Lost $lost
+     * @param Lost $lost
      * @return \Inertia\Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function edit(License $license, Lost $lost): \Inertia\Response
     {
@@ -124,13 +147,13 @@ class LostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\UpdateLostRequest $request
-     * @param \App\Models\Lost $lost
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Exception
+     * @param UpdateLostRequest $request
+     * @param Lost $lost
+     * @return RedirectResponse
+     * @throws AuthorizationException
+     * @throws Exception
      */
-    public function update(UpdateLostRequest $request, License $license, Lost $lost): \Illuminate\Http\RedirectResponse
+    public function update(UpdateLostRequest $request, License $license, Lost $lost): RedirectResponse
     {
         $this->authorize('update', [$lost, $license]);
         $data = $request->validated();
@@ -151,7 +174,7 @@ class LostController extends Controller
                         $property->save();
                         break;
                     default:
-                        throw new \Exception('Invalid property type in LostController/update');
+                        throw new Exception('Invalid property type in LostController/update');
                 }
             }
         }
@@ -162,8 +185,8 @@ class LostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Lost  $lost
-     * @return \Illuminate\Http\Response
+     * @param Lost $lost
+     * @return Response
      */
     public function destroy(Lost $lost)
     {

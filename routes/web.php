@@ -38,6 +38,7 @@ Route::prefix('admin')->middleware('auth')->group(function(){
 Route::prefix('licenses/{license}')->middleware('auth')->group(function(){
     Route::get('losts/create', [\App\Http\Controllers\LostController::class, 'create'])->name('losts.create');
     Route::post('losts', [\App\Http\Controllers\LostController::class, 'store'])->name('losts.store');
+    Route::get('losts', [\App\Http\Controllers\LostController::class, 'index'])->name('losts.index');
     Route::get('losts/{lost}', [\App\Http\Controllers\LostController::class, 'show'])->name('losts.show');
     Route::get('losts/{lost}/edit', [\App\Http\Controllers\LostController::class, 'edit'])->name('losts.edit');
     Route::put('losts/{lost}', [\App\Http\Controllers\LostController::class, 'update'])->name('losts.update');

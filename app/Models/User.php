@@ -45,4 +45,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Relationship between user and lost
+     */
+    public function losts(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Lost::class);
+    }
 }
