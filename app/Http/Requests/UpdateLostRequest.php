@@ -11,9 +11,9 @@ class UpdateLostRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,15 @@ class UpdateLostRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        return [
-            //
-        ];
+        $license = request()->route('license');
+        return $license->propertyTypes()->exceptShowToFinder()->get()->reduce(function($carry, $propertyType){
+            $carry["property_type$propertyType->id"] = 'array';
+            $carry["property_type$propertyType->id.value"] = $propertyType->value_type === 'text' ?
+                'nullable|string|max:100' :
+                'nullable|image|max:2000';
+            return $carry;
+        }, []);
     }
 }

@@ -52,7 +52,7 @@ class LostPolicy
      * @param  \App\Models\Lost  $lost
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Lost $lost, License $license)
+    public function update(User $user, Lost $lost, License $license): \Illuminate\Auth\Access\Response|bool
     {
         return $lost->user_id === $user->id && $lost->license_id === $license->id;
     }

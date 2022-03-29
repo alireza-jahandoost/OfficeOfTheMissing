@@ -114,13 +114,39 @@ class LostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateLostRequest  $request
-     * @param  \App\Models\Lost  $lost
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\UpdateLostRequest $request
+     * @param \App\Models\Lost $lost
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
      */
-    public function update(UpdateLostRequest $request, Lost $lost)
+    public function update(UpdateLostRequest $request, License $license, Lost $lost): \Illuminate\Http\RedirectResponse
     {
-        //
+        $this->authorize('update', [$lost, $license]);
+        $data = $request->validated();
+
+        foreach ($license->propertyTypes()->exceptShowToFinder()->get() as $propertyType){
+            if(isset($data["property_type$propertyType->id"])){
+                $property = $lost->properties()
+                    ->where('property_type_id', $propertyType->id)->first();
+                switch ($propertyType->value_type){
+                    case 'text':
+                        $property->value = $data["property_type$property->property_type_id"]['value'];
+                        $property->save();
+                        break;
+                    case 'image':
+                        Storage::delete($property->value);
+                        $property->value = $request->file("property_type$property->property_type_id.value")
+                            ->store('licenses');
+                        $property->save();
+                        break;
+                    default:
+                        throw new \Exception('Invalid property type in LostController/update');
+                }
+            }
+        }
+
+        return redirect()->route('losts.edit', [$license, $lost]);
     }
 
     /**
