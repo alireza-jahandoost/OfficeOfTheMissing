@@ -66,9 +66,9 @@ class LostPolicy
      * @param Lost $lost
      * @return Response|bool
      */
-    public function delete(User $user, Lost $lost)
+    public function delete(User $user, Lost $lost, License $license): Response|bool
     {
-        //
+        return $user->id === $lost->user_id && $lost->license_id === $license->id;
     }
 
     /**

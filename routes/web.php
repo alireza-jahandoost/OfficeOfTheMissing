@@ -42,5 +42,6 @@ Route::prefix('licenses/{license}')->middleware('auth')->group(function(){
     Route::get('losts/{lost}', [\App\Http\Controllers\LostController::class, 'show'])->name('losts.show');
     Route::get('losts/{lost}/edit', [\App\Http\Controllers\LostController::class, 'edit'])->name('losts.edit');
     Route::put('losts/{lost}', [\App\Http\Controllers\LostController::class, 'update'])->name('losts.update');
+    Route::delete('losts/{lost}', [\App\Http\Controllers\LostController::class, 'destroy'])->name('losts.destroy');
 });
 

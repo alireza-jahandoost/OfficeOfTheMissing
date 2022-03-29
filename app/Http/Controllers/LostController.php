@@ -186,10 +186,20 @@ class LostController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Lost $lost
-     * @return Response
+     * @return RedirectResponse
      */
-    public function destroy(Lost $lost)
+    public function destroy(License $license, Lost $lost): RedirectResponse
     {
-        //
+        $this->authorize('delete', [$lost, $license]);
+        foreach($lost->properties()->with('propertyType')->get() as $property){
+            if($property->propertyType->value_type === 'image'){
+                Storage::delete($property->value);
+            }
+        }
+
+        $lost->properties()->delete();
+        $lost->delete();
+
+        return redirect()->route('losts.index', $license);
     }
 }
