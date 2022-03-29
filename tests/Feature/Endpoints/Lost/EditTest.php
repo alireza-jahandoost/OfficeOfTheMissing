@@ -39,7 +39,7 @@ class EditTest extends TestCase
             'value_type' => 'image',
         ]);
 
-        Storage::fake('licenses');
+        Storage::fake();
 
         $file = UploadedFile::fake()->image('test.jpg');
         $path = Storage::putFile('licenses', $file);
@@ -99,7 +99,7 @@ class EditTest extends TestCase
             'value_type' => 'image',
         ]);
 
-        Storage::fake('licenses');
+        Storage::fake();
 
         $file = UploadedFile::fake()->image('test.jpg');
         $path = Storage::putFile('licenses', $file);
@@ -141,7 +141,7 @@ class EditTest extends TestCase
             'value_type' => 'image',
         ]);
 
-        Storage::fake('licenses');
+        Storage::fake();
 
         $file = UploadedFile::fake()->image('test.jpg');
         $path = Storage::putFile('licenses', $file);
@@ -184,7 +184,7 @@ class EditTest extends TestCase
             'value_type' => 'image',
         ]);
 
-        Storage::fake('licenses');
+        Storage::fake();
 
         $file = UploadedFile::fake()->image('test.jpg');
         $path = Storage::putFile('licenses', $file);
@@ -227,7 +227,7 @@ class EditTest extends TestCase
             'value_type' => 'image',
         ]);
 
-        Storage::fake('licenses');
+        Storage::fake();
 
         $file = UploadedFile::fake()->image('test.jpg');
         $path = Storage::putFile('licenses', $file);

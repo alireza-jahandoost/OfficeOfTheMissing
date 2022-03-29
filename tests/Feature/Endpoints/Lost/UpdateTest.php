@@ -23,7 +23,7 @@ class UpdateTest extends TestCase
 
     public function test_user_can_send_update_request_without_any_property()
     {
-        Storage::fake('licenses');
+        Storage::fake();
         $license = License::factory()->create();
 
         $user = User::factory()->create();
@@ -72,7 +72,7 @@ class UpdateTest extends TestCase
 
     public function test_user_can_update_text_property()
     {
-        Storage::fake('licenses');
+        Storage::fake();
         $license = License::factory()->create();
 
         $user = User::factory()->create();
@@ -128,7 +128,7 @@ class UpdateTest extends TestCase
 
     public function test_for_updating_text_properties_the_value_must_be_string()
     {
-        Storage::fake('licenses');
+        Storage::fake();
         $license = License::factory()->create();
 
         $user = User::factory()->create();
@@ -181,7 +181,7 @@ class UpdateTest extends TestCase
 
     public function test_for_updating_text_properties_value_length_must_be_lower_than_100_characters()
     {
-        Storage::fake('licenses');
+        Storage::fake();
         $license = License::factory()->create();
 
         $user = User::factory()->create();
@@ -234,7 +234,7 @@ class UpdateTest extends TestCase
 
     public function test_user_can_update_image_property()
     {
-        Storage::fake('licenses');
+        Storage::fake();
         $license = License::factory()->create();
 
         $user = User::factory()->create();
@@ -293,7 +293,7 @@ class UpdateTest extends TestCase
 
     public function test_if_property_type_is_image_the_value_must_be_type_of_image()
     {
-        Storage::fake('licenses');
+        Storage::fake();
         $license = License::factory()->create();
 
         $user = User::factory()->create();
@@ -353,7 +353,7 @@ class UpdateTest extends TestCase
 
     public function test_if_property_type_is_image_the_size_must_be_lower_than_2m()
     {
-        Storage::fake('licenses');
+        Storage::fake();
         $license = License::factory()->create();
 
         $user = User::factory()->create();
@@ -413,7 +413,7 @@ class UpdateTest extends TestCase
 
     public function test_user_can_update_some_properties_together()
     {
-        Storage::fake('licenses');
+        Storage::fake();
         $license = License::factory()->create();
 
         $user = User::factory()->create();
@@ -518,7 +518,7 @@ class UpdateTest extends TestCase
 
     public function test_users_can_update_lost_models_that_belongs_to_themselves()
     {
-        Storage::fake('licenses');
+        Storage::fake();
         $license = License::factory()->create();
 
         $user = User::factory()->create();
@@ -572,7 +572,7 @@ class UpdateTest extends TestCase
 
     public function test_lost_and_license_models_must_match_for_updating()
     {
-        Storage::fake('licenses');
+        Storage::fake();
         $license = License::factory()->create();
         $anotherLicense = License::factory()->create();
 
@@ -626,7 +626,7 @@ class UpdateTest extends TestCase
 
     public function test_guest_user_can_not_update_any_lost_model()
     {
-        Storage::fake('licenses');
+        Storage::fake();
         $license = License::factory()->create();
 
         $user = User::factory()->create();
@@ -679,7 +679,7 @@ class UpdateTest extends TestCase
 
     public function test_admin_user_can_not_update_any_lost_model()
     {
-        Storage::fake('licenses');
+        Storage::fake();
         $license = License::factory()->create();
 
         $user = User::factory()->create();

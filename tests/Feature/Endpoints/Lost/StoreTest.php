@@ -117,7 +117,7 @@ class StoreTest extends TestCase
 
     public function test_user_can_store_a_lost_model_with_property_type_image()
     {
-        Storage::fake('licenses');
+        Storage::fake();
 
         $license = License::factory()->create();
         $propertyType = PropertyType::factory()->for($license)->create([
@@ -146,7 +146,7 @@ class StoreTest extends TestCase
 
     public function test_if_the_type_is_image_the_image_must_exists_and_its_required()
     {
-        Storage::fake('licenses');
+        Storage::fake();
 
         $license = License::factory()->create();
         $propertyType = PropertyType::factory()->for($license)->create([
@@ -174,7 +174,7 @@ class StoreTest extends TestCase
 
     public function test_if_the_value_type_is_image_the_input_must_be_an_image()
     {
-        Storage::fake('licenses');
+        Storage::fake();
 
         $license = License::factory()->create();
         $propertyType = PropertyType::factory()->for($license)->create([
@@ -203,7 +203,7 @@ class StoreTest extends TestCase
 
     public function test_if_the_value_is_image_the_size_of_image_must_not_be_bigger_than_2m()
     {
-        Storage::fake('licenses');
+        Storage::fake();
 
         $license = License::factory()->create();
         $propertyType = PropertyType::factory()->for($license)->create([
@@ -232,7 +232,7 @@ class StoreTest extends TestCase
 
     public function test_user_can_create_lost_model_with_more_than_one_property()
     {
-        Storage::fake('licenses');
+        Storage::fake();
 
         $license = License::factory()->create();
         $firstPropertyType = PropertyType::factory()->for($license)->create([
@@ -289,7 +289,7 @@ class StoreTest extends TestCase
 
     public function test_if_there_is_more_than_one_property_all_of_them_are_required()
     {
-        Storage::fake('licenses');
+        Storage::fake();
 
         $license = License::factory()->create();
         $firstPropertyType = PropertyType::factory()->for($license)->create([
@@ -336,7 +336,7 @@ class StoreTest extends TestCase
 
     public function test_if_there_is_more_than_one_property_the_types_must_be_valid()
     {
-        Storage::fake('licenses');
+        Storage::fake();
 
         $license = License::factory()->create();
         $firstPropertyType = PropertyType::factory()->for($license)->create([
