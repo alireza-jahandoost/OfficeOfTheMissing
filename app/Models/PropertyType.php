@@ -23,6 +23,13 @@ class PropertyType extends Model
     ];
 
     /**
+     * scope to get found and global properties
+     */
+    public function scopeExceptShowToLoser($query){
+        return $query->where('show_to_finder', true);
+    }
+
+    /**
      * scope to get lost and global properties
      */
     public function scopeExceptShowToFinder($query){

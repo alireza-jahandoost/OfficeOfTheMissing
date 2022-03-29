@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFoundRequest;
 use App\Http\Requests\UpdateFoundRequest;
 use App\Models\Found;
+use App\Models\License;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\Response;
+use Inertia\Inertia;
 
 class FoundController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -21,18 +25,28 @@ class FoundController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
+     * @throws AuthorizationException
      */
-    public function create()
+    public function create(License $license): \Inertia\Response
     {
-        //
+        $this->authorize('create', Found::class);
+        $propertyTypes = $license->propertyTypes()->exceptShowToLoser()
+            ->get()->map(function($propertyType){
+                return collect($propertyType)->forget(['show_to_loser', 'show_to_finder']);
+            });
+
+        return Inertia::render('Founds/Create', [
+            'license' => $license,
+            'property_types' => $propertyTypes,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreFoundRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreFoundRequest $request
+     * @return Response
      */
     public function store(StoreFoundRequest $request)
     {
@@ -42,8 +56,8 @@ class FoundController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Found  $found
-     * @return \Illuminate\Http\Response
+     * @param Found $found
+     * @return Response
      */
     public function show(Found $found)
     {
@@ -53,8 +67,8 @@ class FoundController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Found  $found
-     * @return \Illuminate\Http\Response
+     * @param Found $found
+     * @return Response
      */
     public function edit(Found $found)
     {
@@ -64,9 +78,9 @@ class FoundController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateFoundRequest  $request
-     * @param  \App\Models\Found  $found
-     * @return \Illuminate\Http\Response
+     * @param UpdateFoundRequest $request
+     * @param Found $found
+     * @return Response
      */
     public function update(UpdateFoundRequest $request, Found $found)
     {
@@ -76,8 +90,8 @@ class FoundController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Found  $found
-     * @return \Illuminate\Http\Response
+     * @param Found $found
+     * @return Response
      */
     public function destroy(Found $found)
     {

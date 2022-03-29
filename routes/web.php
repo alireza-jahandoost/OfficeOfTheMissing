@@ -37,5 +37,9 @@ Route::middleware('auth')->group(function(){
     });
 
     Route::resource('licenses.losts', \App\Http\Controllers\LostController::class);
+
+    Route::get('licenses/{license}/founds', [\App\Http\Controllers\FoundController::class, 'create'])
+        ->name('licenses.founds.create');
 });
+
 
