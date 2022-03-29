@@ -81,12 +81,22 @@ class LostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Lost  $lost
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Lost $lost
+     * @return \Inertia\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show(Lost $lost)
+    public function show(License $license, Lost $lost): \Inertia\Response
     {
-        //
+        $this->authorize('view', [$lost, $license]);
+        $propertyTypes = $license->propertyTypes()->exceptShowToFinder()
+            ->get()->map(function($propertyType){
+                return collect($propertyType)->forget(['show_to_loser', 'show_to_finder']);
+            });
+        return Inertia::render('Losts/Show', [
+            'license' => $license,
+            'property_types' => $propertyTypes,
+            'properties' => $lost->properties,
+        ]);
     }
 
     /**
