@@ -184,10 +184,20 @@ class FoundController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Found $found
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Found $found)
+    public function destroy(License $license, Found $found)
     {
-        //
+        $this->authorize('delete', [$found, $license]);
+        foreach($found->properties()->with('propertyType')->get() as $property){
+            if($property->propertyType->value_type === 'image'){
+                Storage::delete($property->value);
+            }
+        }
+
+        $found->properties()->delete();
+        $found->delete();
+
+        return redirect()->route('licenses.founds.index', $license);
     }
 }

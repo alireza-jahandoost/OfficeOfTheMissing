@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed $user_id
+ * @property mixed $license_id
+ */
 class Found extends Model
 {
     use HasFactory;

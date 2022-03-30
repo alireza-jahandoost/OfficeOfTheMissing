@@ -55,4 +55,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('licenses/{license}/founds', [\App\Http\Controllers\FoundController::class, 'index'])
         ->name('licenses.founds.index');
+
+    Route::delete('licenses/{license}/founds/{found}', [\App\Http\Controllers\FoundController::class, 'destroy'])
+        ->name('licenses.founds.destroy');
 });
