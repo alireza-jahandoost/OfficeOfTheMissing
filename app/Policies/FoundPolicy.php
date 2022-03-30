@@ -29,9 +29,9 @@ class FoundPolicy
      * @param  \App\Models\Found  $found
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Found $found)
+    public function view(User $user, Found $found, License $license)
     {
-        //
+        return $user->id === $found->user_id && $found->license_id === $license->id;
     }
 
     /**

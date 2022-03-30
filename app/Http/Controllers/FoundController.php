@@ -86,11 +86,21 @@ class FoundController extends Controller
      * Display the specified resource.
      *
      * @param Found $found
-     * @return Response
+     * @return \Inertia\Response
+     * @throws AuthorizationException
      */
-    public function show(Found $found)
+    public function show(License $license, Found $found)
     {
-        //
+        $this->authorize('view', [$found, $license]);
+        $propertyTypes = $license->propertyTypes()->exceptShowToLoser()
+            ->get()->map(function($propertyType){
+                return collect($propertyType)->forget(['show_to_loser', 'show_to_finder']);
+            });
+        return Inertia::render('Founds/Show', [
+            'license' => $license,
+            'property_types' => $propertyTypes,
+            'properties' => $found->properties,
+        ]);
     }
 
     /**
