@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function(){
 
     Route::resource('licenses.losts', \App\Http\Controllers\LostController::class);
 
-    Route::get('licenses/{license}/founds', [\App\Http\Controllers\FoundController::class, 'create'])
+    Route::get('licenses/{license}/founds/create', [\App\Http\Controllers\FoundController::class, 'create'])
         ->name('licenses.founds.create');
 
     Route::post('licenses/{license}/founds', [\App\Http\Controllers\FoundController::class, 'store'])
@@ -52,4 +52,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('licenses/{license}/founds/{found}', [\App\Http\Controllers\FoundController::class, 'show'])
         ->name('licenses.founds.show');
+
+    Route::get('licenses/{license}/founds', [\App\Http\Controllers\FoundController::class, 'index'])
+        ->name('licenses.founds.index');
 });

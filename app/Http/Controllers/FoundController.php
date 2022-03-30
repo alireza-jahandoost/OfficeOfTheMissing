@@ -17,11 +17,29 @@ class FoundController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Inertia\Response
      */
-    public function index()
+    public function index(License $license)
     {
-        //
+            $this->authorize('viewAny', Found::class);
+        $propertyTypes = $license->propertyTypes()->exceptShowToLoser()
+            ->get()->map(function($propertyType){
+                return collect($propertyType)->forget(['show_to_finder','show_to_loser']);
+            });
+
+        $founds = $license->founds()->where('user_id', auth()->id())
+            ->get()->reduce(function($carry, $found){
+                $carry[] = [
+                    'properties' => $found->properties
+                ];
+                return $carry;
+            }, []);
+
+        return Inertia::render('Founds/Index', [
+            'license' => $license,
+            'property_types' => $propertyTypes,
+            'founds' => $founds,
+        ]);
     }
 
     /**
