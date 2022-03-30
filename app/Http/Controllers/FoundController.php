@@ -6,8 +6,10 @@ use App\Http\Requests\StoreFoundRequest;
 use App\Http\Requests\UpdateFoundRequest;
 use App\Models\Found;
 use App\Models\License;
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class FoundController extends Controller
@@ -118,11 +120,36 @@ class FoundController extends Controller
      *
      * @param UpdateFoundRequest $request
      * @param Found $found
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws Exception
      */
-    public function update(UpdateFoundRequest $request, Found $found)
+    public function update(UpdateFoundRequest $request, License $license, Found $found)
     {
-        //
+        $this->authorize('update', [$found, $license]);
+        $data = $request->validated();
+
+        foreach ($license->propertyTypes()->exceptShowToLoser()->get() as $propertyType) {
+            if (isset($data["property_type$propertyType->id"])) {
+                $property = $found->properties()
+                    ->where('property_type_id', $propertyType->id)->first();
+                switch ($propertyType->value_type) {
+                    case 'text':
+                        $property->value = $data["property_type$property->property_type_id"]['value'];
+                        $property->save();
+                        break;
+                    case 'image':
+                        Storage::delete($property->value);
+                        $property->value = $request->file("property_type$property->property_type_id.value")
+                            ->store('licenses');
+                        $property->save();
+                        break;
+                    default:
+                        throw new Exception('Invalid property type in FoundController/update');
+                }
+            }
+        }
+
+        return redirect()->route('licenses.founds.edit', [$license, $found]);
     }
 
     /**
