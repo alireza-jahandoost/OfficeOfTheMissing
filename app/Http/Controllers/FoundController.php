@@ -46,11 +46,38 @@ class FoundController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreFoundRequest $request
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthorizationException
      */
-    public function store(StoreFoundRequest $request)
+    public function store(StoreFoundRequest $request, License $license)
     {
-        //
+        $this->authorize('create', Found::class);
+        $data = $request->validated();
+
+        $found = new Found;
+        $found->user_id = auth()->id();
+        $found->license_id = $license->id;
+        $found->save();
+
+        foreach($license->propertyTypes()->exceptShowToLoser()->get() as $propertyType){
+            switch ($propertyType->value_type){
+                case 'text':
+                    $found->properties()->create([
+                        'property_type_id' => $propertyType->id,
+                        'value' => $data["property_type$propertyType->id"]['value'],
+                    ]);
+                    break;
+                case 'image':
+                    $path = $request->file("property_type$propertyType->id.value")
+                        ->store('licenses');
+                    $found->properties()->create([
+                        'property_type_id' => $propertyType->id,
+                        'value' => $path,
+                    ]);
+            }
+        }
+
+        return redirect()->route('licenses.founds.show', [$license, $found]);
     }
 
     /**

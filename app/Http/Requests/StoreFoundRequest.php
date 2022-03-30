@@ -11,9 +11,9 @@ class StoreFoundRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,19 @@ class StoreFoundRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        return [
-            //
-        ];
+        $license = request()->route('license');
+        $rules = $license->propertyTypes()->exceptShowToLoser()
+            ->get()->reduce(function($carry, $propertyType){
+            $carry["property_type$propertyType->id"] = 'array';
+            $carry["property_type$propertyType->id.value"] =
+                $propertyType->value_type === 'text' ?
+                'required|string|max:100' :
+                'required|image|max:2000';
+            return $carry;
+        }, []);
+
+        return $rules;
     }
 }

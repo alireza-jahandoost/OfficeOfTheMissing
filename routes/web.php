@@ -40,6 +40,12 @@ Route::middleware('auth')->group(function(){
 
     Route::get('licenses/{license}/founds', [\App\Http\Controllers\FoundController::class, 'create'])
         ->name('licenses.founds.create');
+
+    Route::post('licenses/{license}/founds', [\App\Http\Controllers\FoundController::class, 'store'])
+        ->name('licenses.founds.store');
 });
+
+Route::get('licenses/{license}/founds/{found}', [\App\Http\Controllers\FoundController::class, 'show'])
+    ->name('licenses.founds.show');
 
 
