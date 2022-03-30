@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Found;
+use App\Models\License;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -51,9 +52,9 @@ class FoundPolicy
      * @param  \App\Models\Found  $found
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Found $found)
+    public function update(User $user, Found $found, License $license)
     {
-        //
+        return $user->id === $found->user_id && $found->license_id === $license->id;
     }
 
     /**

@@ -43,6 +43,9 @@ Route::middleware('auth')->group(function(){
 
     Route::post('licenses/{license}/founds', [\App\Http\Controllers\FoundController::class, 'store'])
         ->name('licenses.founds.store');
+
+    Route::get('licenses/{license}/founds/{found}/edit', [\App\Http\Controllers\FoundController::class, 'edit'])
+        ->name('licenses.founds.edit');
 });
 
 Route::get('licenses/{license}/founds/{found}', [\App\Http\Controllers\FoundController::class, 'show'])
