@@ -5569,6 +5569,46 @@ function Dashboard(props) {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Founds/Create.js":
+/*!*********************************************!*\
+  !*** ./resources/js/Pages/Founds/Create.js ***!
+  \*********************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Founds/Edit.js":
+/*!*******************************************!*\
+  !*** ./resources/js/Pages/Founds/Edit.js ***!
+  \*******************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Founds/Index.js":
+/*!********************************************!*\
+  !*** ./resources/js/Pages/Founds/Index.js ***!
+  \********************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Founds/Show.js":
+/*!*******************************************!*\
+  !*** ./resources/js/Pages/Founds/Show.js ***!
+  \*******************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Licenses/Create.js":
 /*!***********************************************!*\
   !*** ./resources/js/Pages/Licenses/Create.js ***!
@@ -5613,22 +5653,29 @@ function Dashboard(props) {
 /*!******************************************!*\
   !*** ./resources/js/Pages/Losts/Edit.js ***!
   \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/***/ (() => {
 
 
-var EditLosts = function EditLosts(props) {
-  console.log(props);
-  return null;
-};
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditLosts);
+/***/ }),
+
+/***/ "./resources/js/Pages/Losts/Index.js":
+/*!*******************************************!*\
+  !*** ./resources/js/Pages/Losts/Index.js ***!
+  \*******************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Losts/Show.js":
+/*!******************************************!*\
+  !*** ./resources/js/Pages/Losts/Show.js ***!
+  \******************************************/
+/***/ (() => {
+
+
 
 /***/ }),
 
@@ -59156,6 +59203,14 @@ var map = {
 	"./Auth/VerifyEmail.js": "./resources/js/Pages/Auth/VerifyEmail.js",
 	"./Dashboard": "./resources/js/Pages/Dashboard.js",
 	"./Dashboard.js": "./resources/js/Pages/Dashboard.js",
+	"./Founds/Create": "./resources/js/Pages/Founds/Create.js",
+	"./Founds/Create.js": "./resources/js/Pages/Founds/Create.js",
+	"./Founds/Edit": "./resources/js/Pages/Founds/Edit.js",
+	"./Founds/Edit.js": "./resources/js/Pages/Founds/Edit.js",
+	"./Founds/Index": "./resources/js/Pages/Founds/Index.js",
+	"./Founds/Index.js": "./resources/js/Pages/Founds/Index.js",
+	"./Founds/Show": "./resources/js/Pages/Founds/Show.js",
+	"./Founds/Show.js": "./resources/js/Pages/Founds/Show.js",
 	"./Licenses/Create": "./resources/js/Pages/Licenses/Create.js",
 	"./Licenses/Create.js": "./resources/js/Pages/Licenses/Create.js",
 	"./Licenses/Index": "./resources/js/Pages/Licenses/Index.js",
@@ -59166,6 +59221,10 @@ var map = {
 	"./Losts/Create.js": "./resources/js/Pages/Losts/Create.js",
 	"./Losts/Edit": "./resources/js/Pages/Losts/Edit.js",
 	"./Losts/Edit.js": "./resources/js/Pages/Losts/Edit.js",
+	"./Losts/Index": "./resources/js/Pages/Losts/Index.js",
+	"./Losts/Index.js": "./resources/js/Pages/Losts/Index.js",
+	"./Losts/Show": "./resources/js/Pages/Losts/Show.js",
+	"./Losts/Show.js": "./resources/js/Pages/Losts/Show.js",
 	"./Welcome": "./resources/js/Pages/Welcome.js",
 	"./Welcome.js": "./resources/js/Pages/Welcome.js"
 };
