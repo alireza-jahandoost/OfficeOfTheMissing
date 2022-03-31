@@ -1,6 +1,13 @@
 import React from 'react';
+import Button from '../../Components/Button';
+import { Inertia } from '@inertiajs/inertia';
 
 const ShowLicense = ({license, property_types: propertyTypes}) => {
+    const handleClick = () => {
+        if(confirm('همه اطلاعات مدرک حذف خواهد شد. آیا اطمینان دارید؟')){
+            Inertia.delete(route('licenses.destroy', [license.id]));
+        }
+    }
     return (
         <div className="m-10">
             <h3 className="text-xl my-5">
@@ -36,6 +43,12 @@ const ShowLicense = ({license, property_types: propertyTypes}) => {
                     ))
                 }
             </div>
+            <Button
+                type="button"
+                handleClick={handleClick}
+            >
+                حذف کردن مدرک
+            </Button>
         </div>
     )
 }
