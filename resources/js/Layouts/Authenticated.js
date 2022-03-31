@@ -7,6 +7,7 @@ import { Link } from '@inertiajs/inertia-react';
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    console.log(auth);
 
     return (
         <div className="min-h-screen bg-gray-100">
@@ -24,9 +25,12 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
                                 </NavLink>
-                                <NavLink href={route('licenses.index')} active={route().current('licenses.index')}>
-                                    Licenses
-                                </NavLink>
+                                {
+                                    !!auth.user.is_admin &&
+                                    <NavLink href={route('licenses.index')} active={route().current('licenses.index')}>
+                                        Licenses
+                                    </NavLink>
+                                }
                             </div>
                         </div>
 
