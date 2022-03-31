@@ -5570,9 +5570,13 @@ function Dashboard(props) {
         className: "max-w-7xl mx-auto sm:px-6 lg:px-8",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "bg-white overflow-hidden shadow-sm sm:rounded-lg",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "p-6 bg-white border-b border-gray-200",
-            children: "You're logged in!"
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              children: props.auth.user.name
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              children: " \u062E\u0648\u0634 \u0622\u0645\u062F\u06CC\u062F."
+            })]
           })
         })
       })
@@ -5634,12 +5638,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/Input */ "./resources/js/Components/Input.js");
-/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Components/Button */ "./resources/js/Components/Button.js");
-/* harmony import */ var _Components_Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Components/Checkbox */ "./resources/js/Components/Checkbox.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Components/Input */ "./resources/js/Components/Input.js");
+/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Components/Button */ "./resources/js/Components/Button.js");
+/* harmony import */ var _Components_Checkbox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Components/Checkbox */ "./resources/js/Components/Checkbox.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -5667,8 +5672,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
-var CreateLicense = function CreateLicense() {
-  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+
+var CreateLicense = function CreateLicense(_ref) {
+  var auth = _ref.auth,
+      authenticatedErrors = _ref.errors;
+
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.useForm)({
     name: '',
     property_types: []
   }),
@@ -5682,7 +5691,7 @@ var CreateLicense = function CreateLicense() {
 
   var addPropertyType = function addPropertyType() {
     setData('property_types', [].concat(_toConsumableArray(data.property_types), [{
-      id: (0,uuid__WEBPACK_IMPORTED_MODULE_6__["default"])(),
+      id: (0,uuid__WEBPACK_IMPORTED_MODULE_7__["default"])(),
       name: '',
       value_type: 'text',
       hint: '',
@@ -5710,128 +5719,138 @@ var CreateLicense = function CreateLicense() {
     }));
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    className: "m-10",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      type: "button",
-      handleClick: addPropertyType,
-      children: "\u0627\u06CC\u062C\u0627\u062F \u0648\u06CC\u0698\u06AF\u06CC \u062C\u062F\u06CC\u062F"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
-      className: "my-4",
-      onSubmit: handleSubmit,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
-        children: "\u0627\u06CC\u062C\u0627\u062F \u0645\u062F\u0631\u06A9 \u062C\u062F\u06CC\u062F"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-          children: "\u0646\u0627\u0645 \u0645\u062F\u0631\u06A9"
-        }), errors.name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    auth: auth,
+    errors: authenticatedErrors,
+    header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+      className: "font-semibold text-xl text-gray-800 leading-tight",
+      children: "\u0627\u06CC\u062C\u0627\u062F \u0645\u062F\u0631\u06A9 \u062C\u062F\u06CC\u062F"
+    }),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Head, {
+      title: "Create License"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "m-10",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        type: "button",
+        handleClick: addPropertyType,
+        children: "\u0627\u06CC\u062C\u0627\u062F \u0648\u06CC\u0698\u06AF\u06CC \u062C\u062F\u06CC\u062F"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
+        className: "my-4",
+        onSubmit: handleSubmit,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
+          children: "\u0627\u06CC\u062C\u0627\u062F \u0645\u062F\u0631\u06A9 \u062C\u062F\u06CC\u062F"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+            children: "\u0646\u0627\u0645 \u0645\u062F\u0631\u06A9"
+          }), errors.name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            className: "text-red-700",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+              children: "\u062E\u0637\u0627: "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+              children: errors.name
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            type: "text",
+            name: "license_name",
+            required: "required",
+            value: data.name,
+            handleChange: function handleChange(e) {
+              return setData('name', e.target.value);
+            }
+          })]
+        }), errors.property_types && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "text-red-700",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
             children: "\u062E\u0637\u0627: "
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-            children: errors.name
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+            children: errors.property_types
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          type: "text",
-          name: "license_name",
-          required: "required",
-          value: data.name,
-          handleChange: function handleChange(e) {
-            return setData('name', e.target.value);
-          }
-        })]
-      }), errors.property_types && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        className: "text-red-700",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          children: "\u062E\u0637\u0627: "
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          children: errors.property_types
-        })]
-      }), data.property_types.map(function (propertyType) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          className: "mt-14",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-              children: "\u0646\u0627\u0645 \u0648\u06CC\u0698\u06AF\u06CC"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
-              type: "text",
-              name: "property_type_".concat(propertyType.id, "_name"),
-              value: propertyType.name,
-              required: "required",
-              handleChange: function handleChange(e) {
-                return changePropertyTypeById(propertyType.id, {
-                  name: e.target.value
-                });
-              }
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-              children: "\u0646\u0648\u0639 \u0648\u06CC\u0698\u06AF\u06CC"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
-              name: "property_type_".concat(propertyType.id, "_value_type"),
-              value: propertyType.value_type,
-              onChange: function onChange(e) {
-                changePropertyTypeById(propertyType.id, {
-                  value_type: e.target.value
-                });
-              },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
-                value: "text",
-                children: "\u0645\u062A\u0646"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
-                value: "image",
-                children: "\u062A\u0635\u0648\u06CC\u0631"
+        }), data.property_types.map(function (propertyType) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            className: "mt-14",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                children: "\u0646\u0627\u0645 \u0648\u06CC\u0698\u06AF\u06CC"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                type: "text",
+                name: "property_type_".concat(propertyType.id, "_name"),
+                value: propertyType.name,
+                required: "required",
+                handleChange: function handleChange(e) {
+                  return changePropertyTypeById(propertyType.id, {
+                    name: e.target.value
+                  });
+                }
               })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                children: "\u0646\u0648\u0639 \u0648\u06CC\u0698\u06AF\u06CC"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
+                name: "property_type_".concat(propertyType.id, "_value_type"),
+                value: propertyType.value_type,
+                onChange: function onChange(e) {
+                  changePropertyTypeById(propertyType.id, {
+                    value_type: e.target.value
+                  });
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                  value: "text",
+                  children: "\u0645\u062A\u0646"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                  value: "image",
+                  children: "\u062A\u0635\u0648\u06CC\u0631"
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                children: "\u062A\u0648\u0636\u06CC\u062D \u0648\u06CC\u0698\u06AF\u06CC \u0628\u0631\u0627\u06CC \u06A9\u0627\u0631\u0628\u0631\u0627\u0646"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                type: "text",
+                name: "property_type_".concat(propertyType.id, "_hint"),
+                value: propertyType.hint,
+                handleChange: function handleChange(e) {
+                  return changePropertyTypeById(propertyType.id, {
+                    hint: e.target.value
+                  });
+                }
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                children: "\u0646\u0634\u0627\u0646 \u062F\u0627\u062F\u0646 \u0628\u0647 \u067E\u06CC\u062F\u0627 \u06A9\u0646\u0646\u062F\u0647"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Checkbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                name: "property_type_".concat(propertyType.id, "_show_to_finder"),
+                value: propertyType.show_to_finder,
+                handleChange: function handleChange(e) {
+                  changePropertyTypeById(propertyType.id, {
+                    show_to_finder: e.target.checked
+                  });
+                }
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                children: "\u0646\u0634\u0627\u0646 \u062F\u0627\u062F\u0646 \u0628\u0647 \u06AF\u0645 \u06A9\u0646\u0646\u062F\u0647"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Checkbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                name: "property_type_".concat(propertyType.id, "_show_to_loser"),
+                value: propertyType.show_to_loser,
+                handleChange: function handleChange(e) {
+                  changePropertyTypeById(propertyType.id, {
+                    show_to_loser: e.target.checked
+                  });
+                }
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              type: "button",
+              handleClick: function handleClick() {
+                return deletePropertyTypeById(propertyType.id);
+              },
+              children: "\u062D\u0630\u0641 \u0648\u06CC\u0698\u06AF\u06CC"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-              children: "\u062A\u0648\u0636\u06CC\u062D \u0648\u06CC\u0698\u06AF\u06CC \u0628\u0631\u0627\u06CC \u06A9\u0627\u0631\u0628\u0631\u0627\u0646"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
-              type: "text",
-              name: "property_type_".concat(propertyType.id, "_hint"),
-              value: propertyType.hint,
-              handleChange: function handleChange(e) {
-                return changePropertyTypeById(propertyType.id, {
-                  hint: e.target.value
-                });
-              }
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-              children: "\u0646\u0634\u0627\u0646 \u062F\u0627\u062F\u0646 \u0628\u0647 \u067E\u06CC\u062F\u0627 \u06A9\u0646\u0646\u062F\u0647"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
-              name: "property_type_".concat(propertyType.id, "_show_to_finder"),
-              value: propertyType.show_to_finder,
-              handleChange: function handleChange(e) {
-                changePropertyTypeById(propertyType.id, {
-                  show_to_finder: e.target.checked
-                });
-              }
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-              children: "\u0646\u0634\u0627\u0646 \u062F\u0627\u062F\u0646 \u0628\u0647 \u06AF\u0645 \u06A9\u0646\u0646\u062F\u0647"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
-              name: "property_type_".concat(propertyType.id, "_show_to_loser"),
-              value: propertyType.show_to_loser,
-              handleChange: function handleChange(e) {
-                changePropertyTypeById(propertyType.id, {
-                  show_to_loser: e.target.checked
-                });
-              }
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
-            type: "button",
-            handleClick: function handleClick() {
-              return deletePropertyTypeById(propertyType.id);
-            },
-            children: "\u062D\u0630\u0641 \u0648\u06CC\u0698\u06AF\u06CC"
-          })]
-        }, propertyType.id);
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        className: "my-5",
-        type: "submit",
-        children: "\u0627\u06CC\u062C\u0627\u062F"
+          }, propertyType.id);
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          className: "my-5",
+          type: "submit",
+          children: "\u0627\u06CC\u062C\u0627\u062F"
+        })]
       })]
     })]
   });
@@ -5853,33 +5872,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
 
 
 var IndexLicenses = function IndexLicenses(_ref) {
-  var licenses = _ref.licenses;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "m-10",
-    children: licenses.map(function (license) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "my-5",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            children: "\u0646\u0627\u0645 \u0645\u062F\u0631\u06A9: "
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            children: license.name
+  var licenses = _ref.licenses,
+      auth = _ref.auth,
+      authenticatedErrors = _ref.errors;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    auth: auth,
+    errors: authenticatedErrors,
+    header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+      className: "font-semibold text-xl text-gray-800 leading-tight",
+      children: "\u0645\u062F\u0627\u0631\u06A9 \u0627\u06CC\u062C\u0627\u062F \u0634\u062F\u0647"
+    }),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Head, {
+      title: "Create License"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "m-10",
+      children: licenses.map(function (license) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "my-5",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              children: "\u0646\u0627\u0645 \u0645\u062F\u0631\u06A9: "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              children: license.name
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+            href: route('licenses.show', [license.id]),
+            className: "text-blue-800",
+            children: "\u062C\u0632\u06CC\u06CC\u0627\u062A \u0628\u06CC\u0634\u062A\u0631"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-          href: route('licenses.show', [license.id]),
-          className: "text-blue-800",
-          children: "\u062C\u0632\u06CC\u06CC\u0627\u062A \u0628\u06CC\u0634\u062A\u0631"
-        })]
-      }, license.id);
-    })
+        }, license.id);
+      })
+    })]
   });
 };
 
@@ -5901,7 +5935,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Button */ "./resources/js/Components/Button.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
@@ -5910,7 +5948,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var ShowLicense = function ShowLicense(_ref) {
   var license = _ref.license,
-      propertyTypes = _ref.property_types;
+      propertyTypes = _ref.property_types,
+      auth = _ref.auth,
+      authenticatedErrors = _ref.errors;
 
   var handleClick = function handleClick() {
     if (confirm('همه اطلاعات مدرک حذف خواهد شد. آیا اطمینان دارید؟')) {
@@ -5918,59 +5958,69 @@ var ShowLicense = function ShowLicense(_ref) {
     }
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    className: "m-10",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h3", {
-      className: "text-xl my-5",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-        children: "\u0646\u0627\u0645 \u0645\u062F\u0631\u06A9: "
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-        children: license.name
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    auth: auth,
+    errors: authenticatedErrors,
+    header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+      className: "font-semibold text-xl text-gray-800 leading-tight",
+      children: "\u0645\u0634\u062E\u0635\u0627\u062A \u0645\u062F\u0631\u06A9"
+    }),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Head, {
+      title: "Create License"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "m-10",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h3", {
+        className: "text-xl my-5",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          children: "\u0646\u0627\u0645 \u0645\u062F\u0631\u06A9: "
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          children: license.name
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+          className: "text-lg mt-5",
+          children: "\u0648\u06CC\u0698\u06AF\u06CC \u0647\u0627"
+        }), propertyTypes.map(function (propertyType) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "my-3",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                children: "\u0646\u0627\u0645 \u0648\u06CC\u0698\u06AF\u06CC: "
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                children: propertyType.name
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                children: "\u0646\u0648\u0639 \u0648\u06CC\u0698\u06AF\u06CC: "
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                children: propertyType.value_type
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                children: "\u0631\u0627\u0647\u0646\u0645\u0627\u06CC \u0648\u06CC\u0698\u06AF\u06CC: "
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                children: propertyType.hint
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                children: "\u0646\u0645\u0627\u06CC\u0634 \u0628\u0647 \u067E\u06CC\u062F\u0627 \u06A9\u0646\u0646\u062F\u0647: "
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                children: propertyType.show_to_finder ? 'بله' : 'خیر'
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                children: "\u0646\u0645\u0627\u06CC\u0634 \u0628\u0647 \u06AF\u0645 \u06A9\u0646\u0646\u062F\u0647: "
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                children: propertyType.show_to_loser ? 'بله' : 'خیر'
+              })]
+            })]
+          }, propertyType.id);
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        type: "button",
+        handleClick: handleClick,
+        children: "\u062D\u0630\u0641 \u06A9\u0631\u062F\u0646 \u0645\u062F\u0631\u06A9"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
-        className: "text-lg mt-5",
-        children: "\u0648\u06CC\u0698\u06AF\u06CC \u0647\u0627"
-      }), propertyTypes.map(function (propertyType) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "my-3",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: "\u0646\u0627\u0645 \u0648\u06CC\u0698\u06AF\u06CC: "
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: propertyType.name
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: "\u0646\u0648\u0639 \u0648\u06CC\u0698\u06AF\u06CC: "
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: propertyType.value_type
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: "\u0631\u0627\u0647\u0646\u0645\u0627\u06CC \u0648\u06CC\u0698\u06AF\u06CC: "
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: propertyType.hint
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: "\u0646\u0645\u0627\u06CC\u0634 \u0628\u0647 \u067E\u06CC\u062F\u0627 \u06A9\u0646\u0646\u062F\u0647: "
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: propertyType.show_to_finder ? 'بله' : 'خیر'
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: "\u0646\u0645\u0627\u06CC\u0634 \u0628\u0647 \u06AF\u0645 \u06A9\u0646\u0646\u062F\u0647: "
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: propertyType.show_to_loser ? 'بله' : 'خیر'
-            })]
-          })]
-        }, propertyType.id);
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      type: "button",
-      handleClick: handleClick,
-      children: "\u062D\u0630\u0641 \u06A9\u0631\u062F\u0646 \u0645\u062F\u0631\u06A9"
     })]
   });
 };
