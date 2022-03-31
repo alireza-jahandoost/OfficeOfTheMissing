@@ -646,6 +646,10 @@ select {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -706,6 +710,9 @@ select {
 .mt-14 {
   margin-top: 3.5rem;
 }
+.mt-5 {
+  margin-top: 1.25rem;
+}
 .block {
   display: block;
 }
@@ -741,6 +748,9 @@ select {
 }
 .h-20 {
   height: 5rem;
+}
+.h-3 {
+  height: 0.75rem;
 }
 .min-h-screen {
   min-height: 100vh;
