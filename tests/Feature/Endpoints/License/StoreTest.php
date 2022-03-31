@@ -612,6 +612,50 @@ class StoreTest extends TestCase
         $this->assertDatabaseCount(PropertyType::class, 0);
     }
 
+    public function test_the_same_property_between_finder_and_loser_can_not_be_type_of_image()
+    {
+        $admin = User::factory()->create(['is_admin' => true]);
+
+        $response = $this->actingAs($admin)->post(route(self::LICENSE_STORE), [
+            'name' => 'شناسنامه‌',
+            'property_types' => [
+                0 => [
+                    'name' => 'شماره شناسنامه',
+                    'value_type' => 'text',
+                    'hint' => 'شماره شناسنامه(فقط اعداد)',
+                    'show_to_finder' => true,
+                    'show_to_loser' => true,
+                ],
+                1 => [
+                    'name' => 'نام پدر',
+                    'value_type' => 'text',
+                    'hint' => 'نام پدر(به زبان فارسی)',
+                    'show_to_finder' => false,
+                    'show_to_loser' => true,
+                ],
+                2 => [
+                    'name' => 'نام و نام خانوادگی',
+                    'value_type' => 'text',
+                    'hint' => 'نام و نام خانوادگی به زبان فارسی',
+                    'show_to_finder' => true,
+                    'show_to_loser' => false,
+                ],
+                3 => [
+                    'name' => 'شماره شناسنامه',
+                    'value_type' => 'image',
+                    'hint' => 'شماره شناسنامه(فقط اعداد)',
+                    'show_to_finder' => true,
+                    'show_to_loser' => true,
+                ],
+            ]
+        ]);
+
+        $response->assertRedirect();
+
+        $this->assertDatabaseCount(License::class, 0);
+        $this->assertDatabaseCount(PropertyType::class, 0);
+    }
+
     public function test_there_must_not_be_a_property_type_invisible_to_finder_and_loser()
     {
         $admin = User::factory()->create(['is_admin' => true]);

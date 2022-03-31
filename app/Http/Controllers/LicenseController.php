@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\ShowToLoserAndFinderAreValid;
+use App\Actions\TypesOfValueTypesAreValid;
 use App\Http\Requests\StoreLicenseRequest;
 use App\Http\Requests\UpdateLicenseRequest;
 use App\Models\License;
@@ -44,11 +45,19 @@ class LicenseController extends Controller
      * @param  \App\Http\Requests\StoreLicenseRequest  $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(ShowToLoserAndFinderAreValid $action, StoreLicenseRequest $request): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function store(ShowToLoserAndFinderAreValid $action, TypesOfValueTypesAreValid $action2, StoreLicenseRequest $request): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         $data = $request->validated();
 
         $error = $action->check($data['property_types']);
+
+        if($error){
+            return redirect()->back()->withErrors([
+                'property_types' => $error,
+            ])->withInput();
+        }
+
+        $error = $action2->check($data['property_types']);
 
         if($error){
             return redirect()->back()->withErrors([
