@@ -202,4 +202,14 @@ class LostController extends Controller
 
         return redirect()->route('licenses.losts.index', $license);
     }
+
+    /**
+     * Display list of licenses with link to index specific lost models route
+     */
+    public function indexLicenses(){
+        $this->authorize('indexLicenses', Lost::class);
+        return Inertia::render('Losts/IndexLicenses', [
+            'licenses' => License::all()
+        ]);
+    }
 }

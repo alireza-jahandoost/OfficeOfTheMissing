@@ -94,4 +94,12 @@ class LostPolicy
     {
         //
     }
+
+    /**
+     * Determine whether the user can see indexLicenses page.
+     */
+    public function indexLicenses(User $user): bool
+    {
+        return !$user->is_admin;
+    }
 }
