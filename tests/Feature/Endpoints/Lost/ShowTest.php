@@ -74,9 +74,10 @@ class ShowTest extends TestCase
                 ->missing('show_to_loser')
                 ->etc()
             )
-            ->has('properties', 2)
-            ->where('properties.0.value', $firstProperty->value)
-            ->where('properties.1.value', $secondProperty->value)
+            ->has('lost.properties', 2)
+            ->where('lost.id', $lost->id )
+            ->where('lost.properties.0.value', $firstProperty->value)
+            ->where('lost.properties.1.value', $secondProperty->value)
         );
     }
 
