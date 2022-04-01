@@ -6722,9 +6722,181 @@ var CreateLosts = function CreateLosts(_ref) {
 /*!******************************************!*\
   !*** ./resources/js/Pages/Losts/Edit.js ***!
   \******************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/Button */ "./resources/js/Components/Button.js");
+/* harmony import */ var _Components_PersianError__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Components/PersianError */ "./resources/js/Components/PersianError.js");
+/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Components/Input */ "./resources/js/Components/Input.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
+
+
+
+
+
+
+
+
+
+
+var EditLost = function EditLost(_ref) {
+  var auth = _ref.auth,
+      errors = _ref.errors,
+      license = _ref.license,
+      property_types = _ref.property_types,
+      lost = _ref.lost;
+  var initialValues = property_types.reduce(function (carry, propertyType) {
+    var property = lost.properties.find(function (property) {
+      return property.property_type_id === propertyType.id;
+    });
+    carry["property_type".concat(propertyType.id)] = {
+      value: property.value
+    };
+    return carry;
+  }, {});
+
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5__.useForm)(initialValues),
+      data = _useForm.data,
+      setData = _useForm.setData;
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    lost.properties.map(function (property) {
+      var propertyType = property_types.find(function (propertyType) {
+        return propertyType.id === property.property_type_id;
+      });
+      var propertyName = "property_type".concat(propertyType.id);
+
+      if (data[propertyName].value !== property.value) {
+        setData(propertyName, {
+          value: property.value
+        });
+      }
+    });
+  }, [lost.properties]);
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    var newState = lost.properties.reduce(function (carry, property) {
+      var propertyType = property_types.find(function (propertyType) {
+        return propertyType.id === property.property_type_id;
+      });
+      var propertyName = "property_type".concat(propertyType.id);
+
+      if (data[propertyName].value !== property.value) {
+        carry[propertyName] = data[propertyName];
+      }
+
+      return carry;
+    }, {});
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__.Inertia.post(route('licenses.losts.update', [license.id, lost.id]), _objectSpread(_objectSpread({}, newState), {}, {
+      _method: 'PUT'
+    }));
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    auth: auth,
+    errors: errors,
+    header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
+      className: "font-semibold text-xl text-gray-800 leading-tight",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+        children: "\u0627\u0635\u0644\u0627\u062D \u0645\u062F\u0631\u06A9"
+      })
+    }),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5__.Head, {
+      title: "Edit Lost"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+      className: "m-10",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
+        onSubmit: handleSubmit,
+        children: [property_types.map(function (propertyType) {
+          var propertyName = "property_type".concat(propertyType.id);
+          var property = lost.properties.find(function (property) {
+            return property.property_type_id === propertyType.id;
+          });
+
+          switch (propertyType.value_type) {
+            case 'text':
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
+                  children: propertyType.name
+                }), errors[propertyName] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  message: errors[propertyName]
+                }), errors["".concat(propertyName, ".value")] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  message: errors["".concat(propertyName, ".value")]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                  name: propertyName,
+                  value: data[propertyName].value,
+                  required: "required",
+                  handleChange: function handleChange(e) {
+                    return setData(propertyName, {
+                      value: e.target.value
+                    });
+                  }
+                })]
+              }, propertyType.id);
+
+            case 'image':
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
+                  children: propertyType.name
+                }), errors[propertyName] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  message: errors[propertyName]
+                }), errors["".concat(propertyName, ".value")] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  message: errors["".concat(propertyName, ".value")]
+                }), data[propertyName].value === property.value ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+                    src: "/".concat(data[propertyName].value),
+                    alt: propertyType.name
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                    className: "my-4",
+                    type: "button",
+                    handleClick: function handleClick() {
+                      return setData(propertyName, {
+                        value: ''
+                      });
+                    },
+                    children: "\u062A\u063A\u06CC\u06CC\u0631 \u0639\u06A9\u0633"
+                  })]
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                  type: "file",
+                  name: propertyName,
+                  required: "required",
+                  handleChange: function handleChange(e) {
+                    return setData(propertyName, {
+                      value: e.target.files[0]
+                    });
+                  }
+                })]
+              }, propertyType.id);
+
+            default:
+              throw new Error('Invalid property type in Losts/Create.js');
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          className: "my-4",
+          children: "\u0628\u0647 \u0631\u0648\u0632 \u0631\u0633\u0627\u0646\u06CC \u0645\u062F\u0631\u06A9"
+        })]
+      })
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditLost);
 
 /***/ }),
 
