@@ -91,7 +91,7 @@ const CreateLosts = ({auth, errors: authenticatedErrors, license, property_types
                                     </div>
                                 )
                             default:
-                                throw new Error('Invalid property type in Founds/Create.js');
+                                throw new Error('Invalid property type in Losts/Create.js');
                         }
                     })}
                     <Button processing={processing} className={"my-4"}>ایجاد مدرک</Button>

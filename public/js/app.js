@@ -6702,7 +6702,7 @@ var CreateLosts = function CreateLosts(_ref) {
               }, propertyType.id);
 
             default:
-              throw new Error('Invalid property type in Founds/Create.js');
+              throw new Error('Invalid property type in Losts/Create.js');
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
           processing: processing,
