@@ -144,7 +144,10 @@ class LostController extends Controller
         return Inertia::render('Losts/Edit',[
             'license' => $license,
             'property_types' => $propertyTypes,
-            'properties' => $lost->properties,
+            'lost' => [
+                'properties' => $lost->properties,
+                'id' => $lost->id,
+            ]
         ]);
     }
 

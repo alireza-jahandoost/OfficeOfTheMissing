@@ -74,9 +74,10 @@ class EditTest extends TestCase
                 ->missing('show_to_loser')
                 ->etc()
             )
-            ->has('properties',2)
-            ->where('properties.0.value', $value)
-            ->where('properties.1.value', $path)
+            ->where('lost.id', $lost->id)
+            ->has('lost.properties',2)
+            ->where('lost.properties.0.value', $value)
+            ->where('lost.properties.1.value', $path)
         );
     }
 
