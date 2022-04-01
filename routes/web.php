@@ -41,26 +41,7 @@ Route::middleware('auth')->group(function(){
     Route::get('losts', [\App\Http\Controllers\LostController::class, 'indexLicenses'])
         ->name('licenses.losts.index_licenses');
 
-    Route::get('licenses/{license}/founds/create', [\App\Http\Controllers\FoundController::class, 'create'])
-        ->name('licenses.founds.create');
-
-    Route::post('licenses/{license}/founds', [\App\Http\Controllers\FoundController::class, 'store'])
-        ->name('licenses.founds.store');
-
-    Route::get('licenses/{license}/founds/{found}/edit', [\App\Http\Controllers\FoundController::class, 'edit'])
-        ->name('licenses.founds.edit');
-
-    Route::put('licenses/{license}/founds/{found}', [\App\Http\Controllers\FoundController::class, 'update'])
-        ->name('licenses.founds.update');
-
-    Route::get('licenses/{license}/founds/{found}', [\App\Http\Controllers\FoundController::class, 'show'])
-        ->name('licenses.founds.show');
-
-    Route::get('licenses/{license}/founds', [\App\Http\Controllers\FoundController::class, 'index'])
-        ->name('licenses.founds.index');
-
-    Route::delete('licenses/{license}/founds/{found}', [\App\Http\Controllers\FoundController::class, 'destroy'])
-        ->name('licenses.founds.destroy');
+    Route::resource('licenses.founds', \App\Http\Controllers\FoundController::class);
 
     Route::get('founds', [\App\Http\Controllers\FoundController::class, 'indexLicenses'])
         ->name('licenses.founds.index_licenses');
