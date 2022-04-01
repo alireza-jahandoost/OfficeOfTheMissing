@@ -66,6 +66,7 @@ class ShowTest extends TestCase
         $response->assertInertia(fn(AssertableInertia $page) => $page
             ->component('Founds/Show')
             ->where('license.name', $license->name)
+            ->where('found.id', $found->id)
             ->has('property_types', 2, fn(AssertableInertia $page) => $page
                 ->where('name', $firstPropertyType->name)
                 ->where('value_type', $firstPropertyType->value_type)
@@ -74,9 +75,9 @@ class ShowTest extends TestCase
                 ->missing('show_to_finder')
                 ->etc()
             )
-            ->has('properties', 2)
-            ->where('properties.0.value', $firstProperty->value)
-            ->where('properties.1.value', $secondProperty->value)
+            ->has('found.properties', 2)
+            ->where('found.properties.0.value', $firstProperty->value)
+            ->where('found.properties.1.value', $secondProperty->value)
         );
     }
 
