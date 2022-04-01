@@ -34,6 +34,7 @@ class LostController extends Controller
 
         $losts = $license->losts()->where('user_id', auth()->id())->get()->reduce(function($carry, $lost){
             $carry[] = [
+                'id' => $lost->id,
                 'properties' => $lost->properties
             ];
             return $carry;

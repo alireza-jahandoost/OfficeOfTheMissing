@@ -56,6 +56,7 @@ class IndexTest extends TestCase
             ->component('Losts/Index')
             ->where('license.name', $license->name)
             ->has('losts', 3, fn(AssertableInertia $page) => $page
+                ->where('id', $firstLosts[0]->id)
                 ->has('properties', 4, fn(AssertableInertia $page) => $page
                     ->where('value', $firstLosts[0]->properties[0]->value)
                     ->etc()
@@ -76,6 +77,7 @@ class IndexTest extends TestCase
             ->component('Losts/Index')
             ->where('license.name', $license->name)
             ->has('losts', 5, fn(AssertableInertia $page) => $page
+                ->where('id', $secondLosts[0]->id)
                 ->has('properties', 4, fn(AssertableInertia $page) => $page
                     ->where('value', $secondLosts[0]->properties[0]->value)
                     ->etc()
@@ -132,6 +134,7 @@ class IndexTest extends TestCase
             ->component('Losts/Index')
             ->where('license.name', $firstLicense->name)
             ->has('losts', 3, fn(AssertableInertia $page) => $page
+                ->where('id', $firstLosts[0]->id)
                 ->has('properties', 4, fn(AssertableInertia $page) => $page
                     ->where('value', $firstLosts[0]->properties[0]->value)
                     ->etc()
@@ -152,6 +155,7 @@ class IndexTest extends TestCase
             ->component('Losts/Index')
             ->where('license.name', $secondLicense->name)
             ->has('losts', 5, fn(AssertableInertia $page) => $page
+                ->where('id', $secondLosts[0]->id)
                 ->has('properties', 3, fn(AssertableInertia $page) => $page
                     ->where('value', $secondLosts[0]->properties[0]->value)
                     ->etc()
