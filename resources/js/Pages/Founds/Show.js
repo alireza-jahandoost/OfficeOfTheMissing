@@ -18,7 +18,7 @@ const ShowFound = ({auth, errors: authenticatedErrors, license, property_types, 
                 <span>مشاهده مشخصات مدرک</span>
             </h2>}
         >
-            <Head title="Create Found" />
+            <Head title="Show Found" />
 
             <div className="m-10">
                 <h3 className={"text-xl"}>

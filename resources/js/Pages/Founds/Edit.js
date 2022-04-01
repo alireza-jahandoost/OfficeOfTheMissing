@@ -63,7 +63,7 @@ const EditFound = ({auth, errors, license, property_types, found}) => {
                 <span>اصلاح مدرک</span>
             </h2>}
         >
-            <Head title="Update Found" />
+            <Head title="Edit Found" />
 
             <div className="m-10">
                 <form onSubmit={handleSubmit}>
