@@ -11,7 +11,6 @@ const CreateLicense = ({auth, errors: authenticatedErrors}) => {
         name: '',
         property_types: [],
     });
-    console.log(data, errors);
 
     const addPropertyType = () => {
         setData(
@@ -40,9 +39,7 @@ const CreateLicense = ({auth, errors: authenticatedErrors}) => {
     }
 
     const handleSubmit = (e) => {
-        console.log('here');
         e.preventDefault();
-        console.log('want to submit');
         post(route('licenses.store'));
     }
 
