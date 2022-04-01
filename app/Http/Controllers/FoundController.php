@@ -143,7 +143,10 @@ class FoundController extends Controller
         return Inertia::render('Founds/Edit',[
             'license' => $license,
             'property_types' => $propertyTypes,
-            'properties' => $found->properties,
+            'found' => [
+                'properties' => $found->properties,
+                'id' => $found->id,
+            ]
         ]);
     }
 

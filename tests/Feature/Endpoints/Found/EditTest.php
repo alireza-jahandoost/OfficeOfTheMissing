@@ -73,9 +73,10 @@ class EditTest extends TestCase
                 ->missing('show_to_finder')
                 ->etc()
             )
-            ->has('properties',2)
-            ->where('properties.0.value', $value)
-            ->where('properties.1.value', $path)
+            ->where('found.id', $found->id)
+            ->has('found.properties',2)
+            ->where('found.properties.0.value', $value)
+            ->where('found.properties.1.value', $path)
         );
     }
 
