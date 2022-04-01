@@ -6591,9 +6591,130 @@ var ShowLicense = function ShowLicense(_ref) {
 /*!********************************************!*\
   !*** ./resources/js/Pages/Losts/Create.js ***!
   \********************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/Button */ "./resources/js/Components/Button.js");
+/* harmony import */ var _Components_PersianError__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Components/PersianError */ "./resources/js/Components/PersianError.js");
+/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Components/Input */ "./resources/js/Components/Input.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
+
+
+
+
+
+
+
+var CreateLosts = function CreateLosts(_ref) {
+  var auth = _ref.auth,
+      authenticatedErrors = _ref.errors,
+      license = _ref.license,
+      property_types = _ref.property_types;
+  var initialValues = property_types.reduce(function (carry, propertyType) {
+    carry["property_type".concat(propertyType.id)] = {
+      value: ""
+    };
+    return carry;
+  }, {});
+
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5__.useForm)(initialValues),
+      data = _useForm.data,
+      setData = _useForm.setData,
+      post = _useForm.post,
+      processing = _useForm.processing,
+      errors = _useForm.errors;
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    post(route('licenses.losts.store', [license.id]));
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    auth: auth,
+    errors: authenticatedErrors,
+    header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h2", {
+      className: "font-semibold text-xl text-gray-800 leading-tight",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        children: "\u0627\u0636\u0627\u0641\u0647 \u06A9\u0631\u062F\u0646"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
+        children: [" ", license.name, " "]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        children: "\u06AF\u0645 \u0634\u062F\u0647"
+      })]
+    }),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5__.Head, {
+      title: "Create Lost"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "m-10",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
+        onSubmit: handleSubmit,
+        children: [property_types.map(function (propertyType) {
+          var propertyName = "property_type".concat(propertyType.id);
+
+          switch (propertyType.value_type) {
+            case 'text':
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                  children: propertyType.name
+                }), errors[propertyName] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  message: errors[propertyName]
+                }), errors["".concat(propertyName, ".value")] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  message: errors["".concat(propertyName, ".value")]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                  name: propertyName,
+                  value: data[propertyName].value,
+                  required: "required",
+                  handleChange: function handleChange(e) {
+                    return setData(propertyName, {
+                      value: e.target.value
+                    });
+                  }
+                })]
+              }, propertyType.id);
+
+            case 'image':
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                  children: propertyType.name
+                }), errors[propertyName] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  message: errors[propertyName]
+                }), errors["".concat(propertyName, ".value")] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  message: errors["".concat(propertyName, ".value")]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                  type: "file",
+                  name: propertyName,
+                  required: "required",
+                  handleChange: function handleChange(e) {
+                    return setData(propertyName, {
+                      value: e.target.files[0]
+                    });
+                  }
+                })]
+              }, propertyType.id);
+
+            default:
+              throw new Error('Invalid property type in Founds/Create.js');
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          processing: processing,
+          className: "my-4",
+          children: "\u0627\u06CC\u062C\u0627\u062F \u0645\u062F\u0631\u06A9"
+        })]
+      })
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreateLosts);
 
 /***/ }),
 
