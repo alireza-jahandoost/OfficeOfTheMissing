@@ -5769,9 +5769,150 @@ var CreateFounds = function CreateFounds(_ref) {
 /*!*******************************************!*\
   !*** ./resources/js/Pages/Founds/Edit.js ***!
   \*******************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Button */ "./resources/js/Components/Button.js");
+/* harmony import */ var _Components_PersianError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/PersianError */ "./resources/js/Components/PersianError.js");
+/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Components/Input */ "./resources/js/Components/Input.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
+
+
+
+
+
+
+
+
+var EditFound = function EditFound(_ref) {
+  var auth = _ref.auth,
+      authenticatedErrors = _ref.errors,
+      license = _ref.license,
+      property_types = _ref.property_types,
+      found = _ref.found;
+  var initialValues = property_types.reduce(function (carry, propertyType) {
+    var property = found.properties.find(function (property) {
+      return property.property_type_id === propertyType.id;
+    });
+    carry["property_type".concat(propertyType.id)] = {
+      value: property.value
+    };
+    return carry;
+  }, {});
+
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__.useForm)(initialValues),
+      data = _useForm.data,
+      setData = _useForm.setData,
+      put = _useForm.put,
+      processing = _useForm.processing,
+      errors = _useForm.errors;
+
+  console.log(errors, data);
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    put(route('licenses.founds.update', [license.id, found.id]));
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_0__["default"], {
+    auth: auth,
+    errors: authenticatedErrors,
+    header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+      className: "font-semibold text-xl text-gray-800 leading-tight",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        children: "\u0627\u0635\u0644\u0627\u062D \u0645\u062F\u0631\u06A9"
+      })
+    }),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__.Head, {
+      title: "Update Found"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "m-10",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
+        onSubmit: handleSubmit,
+        children: [property_types.map(function (propertyType) {
+          var propertyName = "property_type".concat(propertyType.id);
+          var property = found.properties.find(function (property) {
+            return property.property_type_id === propertyType.id;
+          });
+
+          switch (propertyType.value_type) {
+            case 'text':
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                  children: propertyType.name
+                }), errors[propertyName] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                  message: errors[propertyName]
+                }), errors["".concat(propertyName, ".value")] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                  message: errors["".concat(propertyName, ".value")]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  name: propertyName,
+                  value: data[propertyName].value,
+                  required: "required",
+                  handleChange: function handleChange(e) {
+                    return setData(propertyName, {
+                      value: e.target.value
+                    });
+                  }
+                })]
+              }, propertyType.id);
+
+            case 'image':
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                  children: propertyType.name
+                }), errors[propertyName] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                  message: errors[propertyName]
+                }), errors["".concat(propertyName, ".value")] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                  message: errors["".concat(propertyName, ".value")]
+                }), data[propertyName].value === property.value ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+                    src: "/".concat(data[propertyName].value),
+                    alt: propertyType.name
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                    className: "my-4",
+                    type: "button",
+                    handleClick: function handleClick() {
+                      return setData(propertyName, {
+                        value: ''
+                      });
+                    },
+                    children: "\u062D\u0630\u0641 \u06A9\u0631\u062F\u0646 \u0639\u06A9\u0633"
+                  })]
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  type: "file",
+                  name: propertyName,
+                  required: "required",
+                  handleChange: function handleChange(e) {
+                    return setData(propertyName, {
+                      value: e.target.files[0]
+                    });
+                  }
+                })]
+              }, propertyType.id);
+
+            default:
+              throw new Error('Invalid property type in Founds/Create.js');
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          processing: processing,
+          className: "my-4",
+          children: "\u0628\u0647 \u0631\u0648\u0632 \u0631\u0633\u0627\u0646\u06CC \u0645\u062F\u0631\u06A9"
+        })]
+      })
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditFound);
 
 /***/ }),
 
