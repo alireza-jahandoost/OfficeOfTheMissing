@@ -4757,7 +4757,7 @@ function Authenticated(_ref) {
                 })
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-              className: "hidden space-x-8 sm:-my-px sm:ml-10 sm:flex",
+              className: "hidden sm:-my-px sm:ml-10 sm:flex",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
                 href: route('dashboard'),
                 active: route().current('dashboard'),
@@ -4766,6 +4766,14 @@ function Authenticated(_ref) {
                 href: route('licenses.index'),
                 active: route().current('licenses.index'),
                 children: "Licenses"
+              }), !auth.user.is_admin && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                href: route('licenses.founds.index_licenses'),
+                active: route().current('licenses.founds.index_licenses'),
+                children: "Founds"
+              }), !auth.user.is_admin && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                href: route('licenses.losts.index_licenses'),
+                active: route().current('licenses.losts.index_licenses'),
+                children: "Losts"
               })]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
@@ -5621,6 +5629,28 @@ function Dashboard(props) {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Founds/IndexLicenses.js":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Founds/IndexLicenses.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var IndexLicenses = function IndexLicenses() {
+  return null;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IndexLicenses);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Founds/Show.js":
 /*!*******************************************!*\
   !*** ./resources/js/Pages/Founds/Show.js ***!
@@ -6072,6 +6102,28 @@ var ShowLicense = function ShowLicense(_ref) {
 /***/ (() => {
 
 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Losts/IndexLicenses.js":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/Losts/IndexLicenses.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var IndexLicenses = function IndexLicenses() {
+  return null;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IndexLicenses);
 
 /***/ }),
 
@@ -59770,6 +59822,8 @@ var map = {
 	"./Founds/Edit.js": "./resources/js/Pages/Founds/Edit.js",
 	"./Founds/Index": "./resources/js/Pages/Founds/Index.js",
 	"./Founds/Index.js": "./resources/js/Pages/Founds/Index.js",
+	"./Founds/IndexLicenses": "./resources/js/Pages/Founds/IndexLicenses.js",
+	"./Founds/IndexLicenses.js": "./resources/js/Pages/Founds/IndexLicenses.js",
 	"./Founds/Show": "./resources/js/Pages/Founds/Show.js",
 	"./Founds/Show.js": "./resources/js/Pages/Founds/Show.js",
 	"./Licenses/Create": "./resources/js/Pages/Licenses/Create.js",
@@ -59784,6 +59838,8 @@ var map = {
 	"./Losts/Edit.js": "./resources/js/Pages/Losts/Edit.js",
 	"./Losts/Index": "./resources/js/Pages/Losts/Index.js",
 	"./Losts/Index.js": "./resources/js/Pages/Losts/Index.js",
+	"./Losts/IndexLicenses": "./resources/js/Pages/Losts/IndexLicenses.js",
+	"./Losts/IndexLicenses.js": "./resources/js/Pages/Losts/IndexLicenses.js",
 	"./Losts/Show": "./resources/js/Pages/Losts/Show.js",
 	"./Losts/Show.js": "./resources/js/Pages/Losts/Show.js",
 	"./Welcome": "./resources/js/Pages/Welcome.js",

@@ -21,7 +21,7 @@ export default function Authenticated({ auth, header, children }) {
                                 </Link>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div className="hidden sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
                                 </NavLink>
@@ -29,6 +29,18 @@ export default function Authenticated({ auth, header, children }) {
                                     !!auth.user.is_admin &&
                                     <NavLink href={route('licenses.index')} active={route().current('licenses.index')}>
                                         Licenses
+                                    </NavLink>
+                                }
+                                {
+                                    !auth.user.is_admin &&
+                                    <NavLink href={route('licenses.founds.index_licenses')} active={route().current('licenses.founds.index_licenses')}>
+                                        Founds
+                                    </NavLink>
+                                }
+                                {
+                                    !auth.user.is_admin &&
+                                    <NavLink href={route('licenses.losts.index_licenses')} active={route().current('licenses.losts.index_licenses')}>
+                                        Losts
                                     </NavLink>
                                 }
                             </div>
