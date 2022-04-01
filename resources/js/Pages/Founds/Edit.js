@@ -1,11 +1,12 @@
+import React, {useEffect} from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import Button from '../../Components/Button';
 import PersianError from '../../Components/PersianError';
 import Input from '../../Components/Input';
 import {useForm, Head, Link} from '@inertiajs/inertia-react';
-import React from 'react';
+import {Inertia} from "@inertiajs/inertia";
 
-const EditFound = ({auth, errors: authenticatedErrors, license, property_types, found}) => {
+const EditFound = ({auth, errors, license, property_types, found}) => {
     const initialValues = property_types.reduce((carry, propertyType) => {
         const property = found.properties.find(property =>
             property.property_type_id === propertyType.id
@@ -15,18 +16,49 @@ const EditFound = ({auth, errors: authenticatedErrors, license, property_types, 
         }
         return carry;
     }, {});
-    const {data, setData, put, processing, errors} = useForm(initialValues);
-    console.log(errors, data);
+    const {data, setData} = useForm(initialValues);
+
+    useEffect(() => {
+        found.properties.map(property => {
+            const propertyType = property_types.find(
+                propertyType => propertyType.id === property.property_type_id
+            );
+            const propertyName = `property_type${propertyType.id}`;
+            if(data[propertyName].value !== property.value){
+                setData(
+                    propertyName,
+                    {
+                        value: property.value
+                    }
+                )
+            }
+        })
+    }, [found.properties]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        put(route('licenses.founds.update', [license.id, found.id]));
+
+        const newState = found.properties.reduce((carry, property) => {
+                const propertyType = property_types.find(
+                    propertyType => propertyType.id === property.property_type_id
+                )
+                const propertyName = `property_type${propertyType.id}`;
+                if (data[propertyName].value !== property.value){
+                    carry[propertyName] = data[propertyName];
+                }
+                return carry;
+            },{});
+
+        Inertia.post(route('licenses.founds.update', [license.id, found.id]), {
+            ...newState,
+            _method: 'PUT'
+        })
     }
 
     return (
         <Authenticated
             auth={auth}
-            errors={authenticatedErrors}
+            errors={errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">
                 <span>اصلاح مدرک</span>
             </h2>}
@@ -99,7 +131,7 @@ const EditFound = ({auth, errors: authenticatedErrors, license, property_types, 
                                                             })
                                                         }
                                                     >
-                                                        حذف کردن عکس
+                                                        تغییر عکس
                                                     </Button>
                                                 </>
                                             :
@@ -122,7 +154,7 @@ const EditFound = ({auth, errors: authenticatedErrors, license, property_types, 
                                 throw new Error('Invalid property type in Founds/Create.js');
                         }
                     })}
-                    <Button processing={processing} className={"my-4"}>به روز رسانی مدرک</Button>
+                    <Button className={"my-4"}>به روز رسانی مدرک</Button>
                 </form>
             </div>
         </Authenticated>
