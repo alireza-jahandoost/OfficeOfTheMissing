@@ -19,8 +19,8 @@ const IndexFounds = ({auth, errors: authenticatedErrors, license, property_types
                 <Link href={route('licenses.founds.create', [license.id])}>
                     <Button type="button">اضافه کردن مدرک پیدا شده</Button>
                 </Link>
-                {founds.map((found, idx) => (
-                    <Link key={idx} href={route('licenses.founds.index', [license.id])}>
+                {founds.map((found) => (
+                    <Link key={found.id} href={route('licenses.founds.show', [license.id, found.id])}>
                         <div className={"bg-white shadow my-4 p-3 rounded hover:bg-gray-200"}>
                             {
                                 found.properties.map(property => {
