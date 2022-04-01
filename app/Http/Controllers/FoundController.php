@@ -30,6 +30,7 @@ class FoundController extends Controller
         $founds = $license->founds()->where('user_id', auth()->id())
             ->get()->reduce(function($carry, $found){
                 $carry[] = [
+                    'id' => $found->id,
                     'properties' => $found->properties
                 ];
                 return $carry;
