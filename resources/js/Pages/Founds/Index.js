@@ -19,9 +19,9 @@ const IndexFounds = ({auth, errors: authenticatedErrors, license, property_types
                 <Link href={route('licenses.founds.create', [license.id])}>
                     <Button type="button">اضافه کردن مدرک پیدا شده</Button>
                 </Link>
-                {founds.map(found => (
-                    <Link href={route('licenses.founds.index', [license.id])}>
-                        <div>
+                {founds.map((found, idx) => (
+                    <Link key={idx} href={route('licenses.founds.index', [license.id])}>
+                        <div className={"bg-white shadow my-4 p-3 rounded hover:bg-gray-200"}>
                             {
                                 found.properties.map(property => {
                                     const propertyType = property_types.find(propertyType =>
@@ -31,7 +31,7 @@ const IndexFounds = ({auth, errors: authenticatedErrors, license, property_types
                                         return null;
                                     }
                                     return (
-                                        <div>
+                                        <div key={property.id}>
                                             <span>{propertyType.name}</span>
                                             <span> : </span>
                                             <span>{property.value}</span>

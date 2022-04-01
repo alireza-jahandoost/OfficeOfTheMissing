@@ -5825,10 +5825,11 @@ var IndexFounds = function IndexFounds(_ref) {
           type: "button",
           children: "\u0627\u0636\u0627\u0641\u0647 \u06A9\u0631\u062F\u0646 \u0645\u062F\u0631\u06A9 \u067E\u06CC\u062F\u0627 \u0634\u062F\u0647"
         })
-      }), founds.map(function (found) {
+      }), founds.map(function (found, idx) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
           href: route('licenses.founds.index', [license.id]),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "bg-white shadow my-4 p-3 rounded hover:bg-gray-200",
             children: found.properties.map(function (property) {
               var propertyType = property_types.find(function (propertyType) {
                 return propertyType.id === property.property_type_id;
@@ -5846,10 +5847,10 @@ var IndexFounds = function IndexFounds(_ref) {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                   children: property.value
                 })]
-              });
+              }, property.id);
             })
           })
-        });
+        }, idx);
       })]
     })]
   });
