@@ -93,4 +93,11 @@ class FoundPolicy
     {
         //
     }
+
+    /**
+     * Determine whether user can index licenses.
+     */
+    public function indexLicenses(User $user){
+        return !$user->is_admin;
+    }
 }

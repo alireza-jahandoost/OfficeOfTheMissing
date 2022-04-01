@@ -200,4 +200,14 @@ class FoundController extends Controller
 
         return redirect()->route('licenses.founds.index', $license);
     }
+
+    /**
+     * Display licenses with link to index method
+     */
+    public function indexLicenses(){
+        $this->authorize('indexLicenses', Found::class);
+        return Inertia::render('Founds/IndexLicenses', [
+            'licenses' => License::all()
+        ]);
+    }
 }
