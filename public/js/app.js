@@ -6526,7 +6526,7 @@ var ShowLicense = function ShowLicense(_ref) {
       children: "\u0645\u0634\u062E\u0635\u0627\u062A \u0645\u062F\u0631\u06A9"
     }),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Head, {
-      title: "Create License"
+      title: "Show License"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "m-10 bg-white p-10 border-2 shadow",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h3", {

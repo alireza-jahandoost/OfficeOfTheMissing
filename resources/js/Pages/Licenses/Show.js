@@ -16,7 +16,7 @@ const ShowLicense = ({license, property_types: propertyTypes, auth, errors: auth
             errors={authenticatedErrors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">مشخصات مدرک</h2>}
         >
-            <Head title="Create License" />
+            <Head title="Show License" />
 
             <div className="m-10 bg-white p-10 border-2 shadow">
                 <h3 className="text-3xl my-5 font-extralight">
