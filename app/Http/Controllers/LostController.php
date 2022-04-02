@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLostRequest;
 use App\Http\Requests\UpdateLostRequest;
+use App\Mail\LostHasFound;
 use App\Models\Found;
 use App\Models\License;
 use App\Models\Lost;
@@ -12,6 +13,7 @@ use Faker\Calculator\Inn;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Testing\AssertableInertia;
@@ -229,5 +231,18 @@ class LostController extends Controller
         return Inertia::render('Losts/IndexLicenses', [
             'licenses' => License::all()
         ]);
+    }
+
+    /**
+     * Accepts a found model for a lost model
+     * @throws AuthorizationException
+     */
+    public function match(Lost $lost, Found $found): RedirectResponse
+    {
+        $this->authorize('match', [$lost, $found]);
+
+        Mail::to($found->user->email)->queue(new LostHasFound($lost, $found));
+
+        return redirect()->route('licenses.losts.show', [$lost->license_id, $lost]);
     }
 }

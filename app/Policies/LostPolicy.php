@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Found;
 use App\Models\License;
 use App\Models\Lost;
 use App\Models\User;
@@ -101,5 +102,17 @@ class LostPolicy
     public function indexLicenses(User $user): bool
     {
         return !$user->is_admin;
+    }
+
+    /**
+     * Determine whether the user can match the found model.
+     */
+    public function match(User $user, Lost $lost, Found $found): bool
+    {
+        return (
+            $lost->license_id === $found->license_id &&
+            $lost->user_id === $user->id &&
+            $lost->license->founds()->relatedToLost($lost)->where('id', $found->id)->exists()
+        );
     }
 }

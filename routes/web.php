@@ -41,6 +41,9 @@ Route::middleware('auth')->group(function(){
     Route::get('losts', [\App\Http\Controllers\LostController::class, 'indexLicenses'])
         ->name('licenses.losts.index_licenses');
 
+    Route::post('matchLosts/{lost}/founds/{found}', [\App\Http\Controllers\LostController::class, 'match'])
+        ->name('licenses.losts.match');
+
     Route::resource('licenses.founds', \App\Http\Controllers\FoundController::class);
 
     Route::get('founds', [\App\Http\Controllers\FoundController::class, 'indexLicenses'])
