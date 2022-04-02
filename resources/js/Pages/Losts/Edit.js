@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import Button from '../../Components/Button';
 import PersianError from '../../Components/PersianError';
@@ -7,6 +7,7 @@ import {useForm, Head, Link} from '@inertiajs/inertia-react';
 import {Inertia} from "@inertiajs/inertia";
 
 const EditLost = ({auth, errors, license, property_types, lost}) => {
+    const [processing, setProcessing] = useState(false);
     const initialValues = property_types.reduce((carry, propertyType) => {
         const property = lost.properties.find(property =>
             property.property_type_id === propertyType.id
@@ -52,6 +53,13 @@ const EditLost = ({auth, errors, license, property_types, lost}) => {
         Inertia.post(route('licenses.losts.update', [license.id, lost.id]), {
             ...newState,
             _method: 'PUT'
+        }, {
+            onStart(){
+                setProcessing(true);
+            },
+            onFinish(){
+                setProcessing(false);
+            }
         })
     }
 
@@ -123,6 +131,7 @@ const EditLost = ({auth, errors, license, property_types, lost}) => {
                                                     />
                                                     <Button
                                                         className={"my-4"}
+                                                        processing={processing}
                                                         type={"button"}
                                                         handleClick={() => setData(
                                                             propertyName,
@@ -154,7 +163,7 @@ const EditLost = ({auth, errors, license, property_types, lost}) => {
                                 throw new Error('Invalid property type in Losts/Create.js');
                         }
                     })}
-                    <Button className={"my-4"}>به روز رسانی مدرک</Button>
+                    <Button processing={processing} className={"my-4"}>به روز رسانی مدرک</Button>
                 </form>
             </div>
         </Authenticated>

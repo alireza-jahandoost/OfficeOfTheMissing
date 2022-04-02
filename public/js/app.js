@@ -6745,6 +6745,18 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -6762,6 +6774,12 @@ var EditLost = function EditLost(_ref) {
       license = _ref.license,
       property_types = _ref.property_types,
       lost = _ref.lost;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      processing = _useState2[0],
+      setProcessing = _useState2[1];
+
   var initialValues = property_types.reduce(function (carry, propertyType) {
     var property = lost.properties.find(function (property) {
       return property.property_type_id === propertyType.id;
@@ -6807,7 +6825,14 @@ var EditLost = function EditLost(_ref) {
     }, {});
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__.Inertia.post(route('licenses.losts.update', [license.id, lost.id]), _objectSpread(_objectSpread({}, newState), {}, {
       _method: 'PUT'
-    }));
+    }), {
+      onStart: function onStart() {
+        setProcessing(true);
+      },
+      onFinish: function onFinish() {
+        setProcessing(false);
+      }
+    });
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -6866,6 +6891,7 @@ var EditLost = function EditLost(_ref) {
                     alt: propertyType.name
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
                     className: "my-4",
+                    processing: processing,
                     type: "button",
                     handleClick: function handleClick() {
                       return setData(propertyName, {
@@ -6890,6 +6916,7 @@ var EditLost = function EditLost(_ref) {
               throw new Error('Invalid property type in Losts/Create.js');
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          processing: processing,
           className: "my-4",
           children: "\u0628\u0647 \u0631\u0648\u0632 \u0631\u0633\u0627\u0646\u06CC \u0645\u062F\u0631\u06A9"
         })]
