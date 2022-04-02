@@ -13,7 +13,6 @@ const CreateFounds = ({auth, errors: authenticatedErrors, license, property_type
         return carry;
     }, {});
     const {data, setData, post, processing, errors} = useForm(initialValues);
-    console.log(data);
 
     const handleSubmit = (e) => {
         e.preventDefault();

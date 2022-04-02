@@ -5677,8 +5677,6 @@ var CreateFounds = function CreateFounds(_ref) {
       processing = _useForm.processing,
       errors = _useForm.errors;
 
-  console.log(data);
-
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     post(route('licenses.founds.store', [license.id]));
