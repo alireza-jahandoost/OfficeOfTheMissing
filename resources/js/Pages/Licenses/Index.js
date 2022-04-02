@@ -11,7 +11,7 @@ const IndexLicenses = ({licenses, auth, errors: authenticatedErrors}) => {
             errors={authenticatedErrors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">مدارک ایجاد شده</h2>}
         >
-            <Head title="Create License" />
+            <Head title="Index Licenses" />
             <div className="m-10">
                 <Link href={route('licenses.create')}>
                     <Button type="button">ایجاد مدرک جدید</Button>

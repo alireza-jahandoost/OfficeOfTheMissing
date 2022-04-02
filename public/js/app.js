@@ -6445,7 +6445,7 @@ var IndexLicenses = function IndexLicenses(_ref) {
       children: "\u0645\u062F\u0627\u0631\u06A9 \u0627\u06CC\u062C\u0627\u062F \u0634\u062F\u0647"
     }),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Head, {
-      title: "Create License"
+      title: "Index Licenses"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "m-10",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
