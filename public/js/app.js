@@ -7068,7 +7068,8 @@ var ShowLost = function ShowLost(_ref) {
       authenticatedErrors = _ref.errors,
       license = _ref.license,
       property_types = _ref.property_types,
-      lost = _ref.lost;
+      lost = _ref.lost,
+      founds = _ref.founds;
 
   var handleLicenseDeletation = function handleLicenseDeletation() {
     if (confirm('مدرک به طور دایم حذف خواهد شد. از انجام این کار اطمینان دارید؟')) {
@@ -7122,6 +7123,36 @@ var ShowLost = function ShowLost(_ref) {
             alt: propertyType.name
           })]
         }, property.id);
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "mt-14",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+          className: "text-2xl",
+          children: "\u0645\u062F\u0627\u0631\u06A9 \u0645\u0637\u0627\u0628\u0642\u062A \u062F\u0627\u0634\u062A\u0647 \u067E\u06CC\u062F\u0627 \u0634\u062F\u0647"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          children: founds.map(function (found) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              className: "border-2 p-4 my-8 border-gray-800",
+              children: found.properties.map(function (property) {
+                var propertyType = property_types.find(function (propertyType) {
+                  return propertyType.id === property.property_type_id;
+                });
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  className: "my-5",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                    children: propertyType.name
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                    children: " : "
+                  }), propertyType.value_type === 'text' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                    children: property.value
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/".concat(property.value),
+                    alt: propertyType.name
+                  })]
+                }, property.id);
+              })
+            }, found.id);
+          })
+        })]
       })]
     })]
   });

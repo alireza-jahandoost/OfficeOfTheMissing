@@ -4,7 +4,7 @@ import {Head, Link} from '@inertiajs/inertia-react';
 import { Inertia } from '@inertiajs/inertia'
 import Button from '../../Components/Button';
 
-const ShowLost = ({auth, errors: authenticatedErrors, license, property_types, lost}) => {
+const ShowLost = ({auth, errors: authenticatedErrors, license, property_types, lost, founds}) => {
     const handleLicenseDeletation = () => {
         if(confirm('مدرک به طور دایم حذف خواهد شد. از انجام این کار اطمینان دارید؟')){
             Inertia.delete(route('licenses.losts.destroy', [license.id, lost.id]));
@@ -50,6 +50,37 @@ const ShowLost = ({auth, errors: authenticatedErrors, license, property_types, l
                         )
                     })
                 }
+
+                <div className={"mt-14"}>
+                    <h4 className={"text-2xl"}>مدارک مطابقت داشته پیدا شده</h4>
+                    <div>
+                        {
+                            founds.map(found => (
+                                <div key={found.id} className={"border-2 p-4 my-8 border-gray-800"}>
+                                    {
+                                        found.properties.map(property => {
+                                            const propertyType = property_types.find(
+                                                propertyType => propertyType.id === property.property_type_id
+                                            )
+
+                                            return (
+                                                <div key={property.id} className={"my-5"}>
+                                                    <span>{propertyType.name}</span>
+                                                    <span> : </span>
+                                                    {
+                                                        propertyType.value_type === 'text' ?
+                                                            <span>{property.value}</span>  :
+                                                            <img src={`/${property.value}`} alt={propertyType.name}/>
+                                                    }
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
             </div>
         </Authenticated>
     );
