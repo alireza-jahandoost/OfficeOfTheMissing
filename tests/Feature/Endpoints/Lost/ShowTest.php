@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Endpoints\Lost;
 
+use App\Models\Found;
 use App\Models\License;
 use App\Models\Lost;
 use App\Models\PropertyType;
@@ -74,10 +75,162 @@ class ShowTest extends TestCase
                 ->missing('show_to_loser')
                 ->etc()
             )
+            ->has('founds', 0)
             ->has('lost.properties', 2)
             ->where('lost.id', $lost->id )
             ->where('lost.properties.0.value', $firstProperty->value)
             ->where('lost.properties.1.value', $secondProperty->value)
+        );
+    }
+
+    public function test_if_there_is_any_matching_found_model_it_must_be_listed()
+    {
+        Storage::fake();
+
+        $user = User::factory()->create();
+        $anotherUser = User::factory()->create();
+        $license = License::factory()->create();
+
+        $firstGlobalPropertyType = PropertyType::factory()->for($license)->create([
+            'show_to_loser' => true,
+            'show_to_finder' => true,
+        ]);
+        $secondGlobalPropertyType = PropertyType::factory()->for($license)->create([
+            'show_to_loser' => true,
+            'show_to_finder' => true,
+        ]);
+
+        $lostPropertyType = PropertyType::factory()->for($license)->create([
+            'show_to_loser' => true,
+            'show_to_finder' => false,
+        ]);
+
+        $textFoundPropertyType = PropertyType::factory()->for($license)->create([
+            'show_to_loser' => false,
+            'show_to_finder' => true,
+        ]);
+
+        $imageFoundPropertyType = PropertyType::factory()->for($license)->create([
+            'show_to_loser' => false,
+            'show_to_finder' => true,
+            'value_type' => 'image',
+        ]);
+
+        $firstSameValue = Str::random(30);
+        $secondSameValue = Str::random(40);
+
+        $lost = Lost::factory()->for($license)->for($user)->create();
+        $firstGlobalPropertyOfLost = $lost->properties()->create([
+            'property_type_id' => $firstGlobalPropertyType->id,
+            'value' => $firstSameValue,
+        ]);
+        $secondGlobalPropertyOfLost = $lost->properties()->create([
+            'property_type_id' => $secondGlobalPropertyType->id,
+            'value' => $secondSameValue,
+        ]);
+        $lostPropertyOfLost = $lost->properties()->create([
+            'property_type_id' => $lostPropertyType->id,
+            'value' => Str::random()
+        ]);
+
+        $firstMatchFound = Found::factory()->for($license)->for($anotherUser)->create();
+        $firstGlobalPropertyOfFirstMatchFound = $firstMatchFound->properties()->create([
+            'property_type_id' => $firstGlobalPropertyType->id,
+            'value' => $firstSameValue,
+        ]);
+        $secondGlobalPropertyOfFirstMatchFound = $firstMatchFound->properties()->create([
+            'property_type_id' => $secondGlobalPropertyType->id,
+            'value' => $secondSameValue,
+        ]);
+        $textFoundPropertyOfFirstMatchFound = $firstMatchFound->properties()->create([
+            'property_type_id' => $textFoundPropertyType->id,
+            'value' => Str::random()
+        ]);
+        $firstMatchFoundFile = UploadedFile::fake()->image('test.jpg');
+        $firstMatchFoundPath = Storage::putFile('licenses', $firstMatchFoundFile);
+        $imageFoundPropertyOfFirstMatchFound = $firstMatchFound->properties()->create([
+            'property_type_id' => $imageFoundPropertyType->id,
+            'value' => $firstMatchFoundPath,
+        ]);
+
+        $firstNotMatchFound = Found::factory()->for($license)->for($anotherUser)->create();
+        $firstGlobalPropertyOfFirstNotMatchFound = $firstNotMatchFound->properties()->create([
+            'property_type_id' => $firstGlobalPropertyType->id,
+            'value' => $firstSameValue.'aaa',
+        ]);
+        $secondGlobalPropertyOfFirstNotMatchFound = $firstNotMatchFound->properties()->create([
+            'property_type_id' => $secondGlobalPropertyType->id,
+            'value' => $secondSameValue,
+        ]);
+        $textFoundPropertyOfFirstNotMatchFound = $firstNotMatchFound->properties()->create([
+            'property_type_id' => $textFoundPropertyType->id,
+            'value' => Str::random()
+        ]);
+        $firstNotMatchFoundFile = UploadedFile::fake()->image('test.jpg');
+        $firstNotMatchFoundPath = Storage::putFile('licenses', $firstNotMatchFoundFile);
+        $imageFoundPropertyOfFirstNotMatchFound = $firstNotMatchFound->properties()->create([
+            'property_type_id' => $imageFoundPropertyType->id,
+            'value' => $firstNotMatchFoundPath,
+        ]);
+
+        $secondNotMatchFound = Found::factory()->for($license)->for($anotherUser)->create();
+        $firstGlobalPropertyOfSecondNotMatchFound = $secondNotMatchFound->properties()->create([
+            'property_type_id' => $firstGlobalPropertyType->id,
+            'value' => $firstSameValue,
+        ]);
+        $secondGlobalPropertyOfSecondNotMatchFound = $secondNotMatchFound->properties()->create([
+            'property_type_id' => $secondGlobalPropertyType->id,
+            'value' => $secondSameValue.'aaa',
+        ]);
+        $textFoundPropertyOfSecondNotMatchFound = $secondNotMatchFound->properties()->create([
+            'property_type_id' => $textFoundPropertyType->id,
+            'value' => Str::random()
+        ]);
+        $secondNotMatchFoundFile = UploadedFile::fake()->image('test.jpg');
+        $secondNotMatchFoundPath = Storage::putFile('licenses', $secondNotMatchFoundFile);
+        $imageFoundPropertyOfSecondNotMatchFound = $secondNotMatchFound->properties()->create([
+            'property_type_id' => $imageFoundPropertyType->id,
+            'value' => $secondNotMatchFoundPath,
+        ]);
+
+        $secondMatchFound = Found::factory()->for($license)->for($anotherUser)->create();
+        $firstGlobalPropertyOfSecondMatchFound = $secondMatchFound->properties()->create([
+            'property_type_id' => $firstGlobalPropertyType->id,
+            'value' => $firstSameValue,
+        ]);
+        $secondGlobalPropertyOfSecondMatchFound = $secondMatchFound->properties()->create([
+            'property_type_id' => $secondGlobalPropertyType->id,
+            'value' => $secondSameValue,
+        ]);
+        $textFoundPropertyOfSecondMatchFound = $secondMatchFound->properties()->create([
+            'property_type_id' => $textFoundPropertyType->id,
+            'value' => Str::random()
+        ]);
+        $secondMatchFoundFile = UploadedFile::fake()->image('test.jpg');
+        $secondMatchFoundPath = Storage::putFile('licenses', $secondMatchFoundFile);
+        $imageFoundPropertyOfSecondMatchFound = $secondMatchFound->properties()->create([
+            'property_type_id' => $imageFoundPropertyType->id,
+            'value' => $secondMatchFoundPath,
+        ]);
+
+        $response = $this->actingAs($user)->get(route(self::LOST_SHOW, [$license, $lost]));
+
+        $response->assertOk();
+
+        $response->assertInertia(fn(AssertableInertia $page) => $page
+            ->has('founds', 2, fn(AssertableInertia $page) => $page
+                ->has('properties', 4, fn(AssertableInertia $page) => $page
+                    ->where('value', $firstGlobalPropertyOfFirstMatchFound->value)
+                    ->etc()
+                )
+                ->where('properties.0.id', $firstGlobalPropertyOfFirstMatchFound->id)
+                ->where('properties.1.id', $secondGlobalPropertyOfFirstMatchFound->id)
+                ->where('properties.2.id', $textFoundPropertyOfFirstMatchFound->id)
+                ->where('properties.3.id', $imageFoundPropertyOfFirstMatchFound->id)
+                ->etc()
+            )
+            ->where('founds.0.id', $firstMatchFound->id)
+            ->where('founds.1.id', $secondMatchFound->id)
         );
     }
 

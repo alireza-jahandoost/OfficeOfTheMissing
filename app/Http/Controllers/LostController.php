@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLostRequest;
 use App\Http\Requests\UpdateLostRequest;
+use App\Models\Found;
 use App\Models\License;
 use App\Models\Lost;
 use Exception;
@@ -116,13 +117,23 @@ class LostController extends Controller
             ->get()->map(function($propertyType){
                 return collect($propertyType)->forget(['show_to_loser', 'show_to_finder']);
             });
+
+        $founds = $license->founds()->relatedToLost($lost)->with('properties')
+            ->get()->map(function($found){
+                return [
+                    'id' => $found->id,
+                    'properties' => $found->properties,
+                ];
+            });
+
         return Inertia::render('Losts/Show', [
             'license' => $license,
             'property_types' => $propertyTypes,
             'lost' => [
                 'properties' => $lost->properties,
                 'id' => $lost->id,
-            ]
+            ],
+            'founds' => $founds,
         ]);
     }
 
