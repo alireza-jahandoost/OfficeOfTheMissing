@@ -18,16 +18,16 @@ const ShowLicense = ({license, property_types: propertyTypes, auth, errors: auth
         >
             <Head title="Create License" />
 
-            <div className="m-10">
-                <h3 className="text-xl my-5">
+            <div className="m-10 bg-white p-10 border-2 shadow">
+                <h3 className="text-3xl my-5 font-extralight">
                     <span>نام مدرک: </span>
                     <span>{license.name}</span>
                 </h3>
                 <div>
-                    <h4 className="text-lg mt-5">ویژگی ها</h4>
+                    <h4 className="text-lg mt-5 font-bold">ویژگی ها</h4>
                     {
-                        propertyTypes.map(propertyType => (
-                            <div key={propertyType.id} className="my-3">
+                        propertyTypes.map((propertyType, idx) => (
+                            <div key={propertyType.id} className={`my-3 pt-4${idx!==0&&" border-t"}`}>
                                 <div>
                                     <span>نام ویژگی: </span>
                                     <span>{propertyType.name}</span>

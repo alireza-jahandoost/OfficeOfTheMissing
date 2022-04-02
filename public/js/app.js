@@ -6528,9 +6528,9 @@ var ShowLicense = function ShowLicense(_ref) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Head, {
       title: "Create License"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: "m-10",
+      className: "m-10 bg-white p-10 border-2 shadow",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h3", {
-        className: "text-xl my-5",
+        className: "text-3xl my-5 font-extralight",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
           children: "\u0646\u0627\u0645 \u0645\u062F\u0631\u06A9: "
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
@@ -6538,11 +6538,11 @@ var ShowLicense = function ShowLicense(_ref) {
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
-          className: "text-lg mt-5",
+          className: "text-lg mt-5 font-bold",
           children: "\u0648\u06CC\u0698\u06AF\u06CC \u0647\u0627"
-        }), propertyTypes.map(function (propertyType) {
+        }), propertyTypes.map(function (propertyType, idx) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            className: "my-3",
+            className: "my-3 pt-4".concat(idx !== 0 && " border-t"),
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
                 children: "\u0646\u0627\u0645 \u0648\u06CC\u0698\u06AF\u06CC: "
