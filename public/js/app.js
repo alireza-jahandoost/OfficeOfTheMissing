@@ -7137,7 +7137,9 @@ var ShowLost = function ShowLost(_ref) {
           className: "text-2xl",
           children: "\u0645\u062F\u0627\u0631\u06A9 \u0645\u0637\u0627\u0628\u0642\u062A \u062F\u0627\u0634\u062A\u0647 \u067E\u06CC\u062F\u0627 \u0634\u062F\u0647"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-          children: founds.map(function (found) {
+          children: founds.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            children: "\u0645\u0648\u0631\u062F\u06CC \u06CC\u0627\u0641\u062A \u0646\u0634\u062F"
+          }) : founds.map(function (found) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
               className: "border-2 p-4 my-8 border-gray-800",
               children: [found.properties.map(function (property) {

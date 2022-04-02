@@ -61,7 +61,9 @@ const ShowLost = ({auth, errors: authenticatedErrors, license, property_types, l
                     <h4 className={"text-2xl"}>مدارک مطابقت داشته پیدا شده</h4>
                     <div>
                         {
-                            founds.map(found => (
+                            founds.length === 0 ?
+                                <div>موردی یافت نشد</div>
+                                :founds.map(found => (
                                 <div key={found.id} className={"border-2 p-4 my-8 border-gray-800"}>
                                     {
                                         found.properties.map(property => {
