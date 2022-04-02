@@ -30,17 +30,17 @@ class ShowTest extends TestCase
 
         $lost = Lost::factory()->for($user)->for($license)->create();
 
-        PropertyType::factory()->for($license)->count(rand(1,3))->create([
-            'show_to_finder'=>true,
-        ]);
-
         $firstPropertyType = PropertyType::factory()->for($license)->create([
             'value_type' => 'text',
             'show_to_loser' => true,
             'show_to_finder' => true,
         ]);
 
-        PropertyType::factory()->for($license)->count(rand(1,3))->create([
+        $firstPropertyTypeOfFound = PropertyType::factory()->for($license)->create([
+            'show_to_finder'=>true,
+        ]);
+
+        $secondPropertyTypeOfFound = PropertyType::factory()->for($license)->create([
             'show_to_finder' => true,
         ]);
 
@@ -67,7 +67,7 @@ class ShowTest extends TestCase
         $response->assertInertia(fn(AssertableInertia $page) => $page
             ->component('Losts/Show')
             ->where('license.name', $license->name)
-            ->has('property_types', 2, fn(AssertableInertia $page) => $page
+            ->has('property_types', 4, fn(AssertableInertia $page) => $page
                 ->where('name', $firstPropertyType->name)
                 ->where('value_type', $firstPropertyType->value_type)
                 ->where('hint', $firstPropertyType->hint)

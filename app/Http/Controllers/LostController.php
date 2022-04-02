@@ -113,7 +113,7 @@ class LostController extends Controller
     public function show(License $license, Lost $lost): \Inertia\Response
     {
         $this->authorize('view', [$lost, $license]);
-        $propertyTypes = $license->propertyTypes()->exceptShowToFinder()
+        $propertyTypes = $license->propertyTypes()
             ->get()->map(function($propertyType){
                 return collect($propertyType)->forget(['show_to_loser', 'show_to_finder']);
             });
