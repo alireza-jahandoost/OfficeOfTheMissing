@@ -10,6 +10,9 @@ use App\Models\PropertyType;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class DeleteTest extends TestCase
@@ -49,15 +52,36 @@ class DeleteTest extends TestCase
 
     public function test_if_license_has_some_found_or_lost_or_property_models_they_must_be_deleted_after_license_deletation()
     {
+        Storage::fake();
+
         $license = License::factory()->create();
-        $propertyType = PropertyType::factory()->for($license)->create();
+        $firstPropertyType = PropertyType::factory()->for($license)->create([
+            'show_to_loser' => true,
+            'show_to_finder' => true,
+            'value_type' => 'text',
+        ]);
+        $secondPropertyType = PropertyType::factory()->for($license)->create([
+            'show_to_loser' => true,
+            'show_to_finder' => false,
+            'value_type' => 'image',
+        ]);
 
         $user = User::factory()->create();
 
-        $lost = Lost::factory()->for($user)->for($license)->hasProperties(1, ['property_type_id' => $propertyType->id])->create();
-        $lostProperty = $lost->properties[0];
+        $lost = Lost::factory()->for($user)->for($license)->create();
+        $lostFirstProperty = $lost->properties()->create([
+            'value' => Str::random(30),
+            'property_type_id' => $firstPropertyType->id
+        ]);
+        $file = UploadedFile::fake()->image('test.jpg');
+        $path = Storage::putFile('licenses', $file);
+        $lostSecondProperty = $lost->properties()->create([
+            'value' => $path,
+            'property_type_id' => $secondPropertyType->id,
+        ]);
 
-        $found = Found::factory()->for($user)->for($license)->hasProperties(1, ['property_type_id' => $propertyType->id])->create();
+        $found = Found::factory()->for($user)->for($license)
+            ->hasProperties(1, ['property_type_id' => $firstPropertyType->id])->create();
         $foundProperty = $found->properties[0];
 
         $admin = User::factory()->create(['is_admin' => true]);
@@ -65,17 +89,21 @@ class DeleteTest extends TestCase
         $response = $this->actingAs($admin)->delete(route(self::LICENSE_DELETE, $license));
         $response->assertRedirect(route(self::LICENSE_INDEX));
         $this->assertModelMissing($license);
-        $this->assertModelMissing($propertyType);
+        $this->assertModelMissing($firstPropertyType);
+        $this->assertModelMissing($secondPropertyType);
         $this->assertModelMissing($found);
         $this->assertModelMissing($lost);
         $this->assertModelMissing($foundProperty);
-        $this->assertModelMissing($lostProperty);
+        $this->assertModelMissing($lostFirstProperty);
+        $this->assertModelMissing($lostSecondProperty);
         $this->assertDatabaseCount(License::class,0);
         $this->assertDatabaseCount(PropertyType::class, 0);
         $this->assertDatabaseCount(Property::class, 0);
         $this->assertDatabaseCount(Found::class, 0);
         $this->assertDatabaseCount(Lost::class, 0);
         $this->assertDatabaseCount(User::class, 2);
+
+        Storage::assertMissing($path);
     }
 
     public function test_guest_user_can_not_delete_any_license()

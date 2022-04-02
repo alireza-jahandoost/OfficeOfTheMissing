@@ -8,6 +8,7 @@ use App\Http\Requests\StoreLicenseRequest;
 use App\Http\Requests\UpdateLicenseRequest;
 use App\Models\License;
 use App\Models\PropertyType;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class LicenseController extends Controller
@@ -98,6 +99,14 @@ class LicenseController extends Controller
      */
     public function destroy(License $license)
     {
+        foreach($license->propertyTypes as $propertyType){
+            if($propertyType->value_type === 'image'){
+                foreach($propertyType->properties as $property){
+                    Storage::delete($property->value);
+                }
+            }
+        }
+
         foreach ($license->founds as $model){
             $model->properties()->delete();
         }

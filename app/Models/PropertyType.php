@@ -42,4 +42,11 @@ class PropertyType extends Model
     public function license(){
         return $this->belongsTo(License::class);
     }
+
+    /**
+     * Relationship between property and property type
+     */
+    public function properties(){
+        return $this->hasMany(Property::class);
+    }
 }
