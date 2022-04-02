@@ -148,13 +148,14 @@ const CreateLicense = ({auth, errors: authenticatedErrors}) => {
                                 <Button
                                     type="button"
                                     handleClick={() => deletePropertyTypeById(propertyType.id)}
+                                    processing={processing}
                                 >
                                     حذف ویژگی
                                 </Button>
                             </div>
                         ))
                     }
-                    <Button className="my-5" type="submit">ایجاد</Button>
+                    <Button processing={processing} className="my-5" type="submit">ایجاد</Button>
                 </form>
             </div>
         </Authenticated>

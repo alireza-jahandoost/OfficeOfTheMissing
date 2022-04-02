@@ -6390,10 +6390,12 @@ var CreateLicense = function CreateLicense(_ref) {
               handleClick: function handleClick() {
                 return deletePropertyTypeById(propertyType.id);
               },
+              processing: processing,
               children: "\u062D\u0630\u0641 \u0648\u06CC\u0698\u06AF\u06CC"
             })]
           }, propertyType.id);
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          processing: processing,
           className: "my-5",
           type: "submit",
           children: "\u0627\u06CC\u062C\u0627\u062F"
