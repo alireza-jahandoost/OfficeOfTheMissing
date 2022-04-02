@@ -7077,6 +7077,12 @@ var ShowLost = function ShowLost(_ref) {
     }
   };
 
+  var confirmFoundLicense = function confirmFoundLicense(foundId) {
+    if (confirm('آیا اطمینان دارید که این مدرک متعلق به شماست؟ ')) {
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__.Inertia.post(route('licenses.losts.match', [lost.id, foundId]));
+    }
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
     auth: auth,
     errors: authenticatedErrors,
@@ -7130,9 +7136,9 @@ var ShowLost = function ShowLost(_ref) {
           children: "\u0645\u062F\u0627\u0631\u06A9 \u0645\u0637\u0627\u0628\u0642\u062A \u062F\u0627\u0634\u062A\u0647 \u067E\u06CC\u062F\u0627 \u0634\u062F\u0647"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
           children: founds.map(function (found) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
               className: "border-2 p-4 my-8 border-gray-800",
-              children: found.properties.map(function (property) {
+              children: [found.properties.map(function (property) {
                 var propertyType = property_types.find(function (propertyType) {
                   return propertyType.id === property.property_type_id;
                 });
@@ -7149,7 +7155,13 @@ var ShowLost = function ShowLost(_ref) {
                     alt: propertyType.name
                   })]
                 }, property.id);
-              })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                type: "button",
+                handleClick: function handleClick() {
+                  return confirmFoundLicense(found.id);
+                },
+                children: "\u062A\u0627\u06CC\u06CC\u062F \u0645\u062F\u0631\u06A9"
+              })]
             }, found.id);
           })
         })]

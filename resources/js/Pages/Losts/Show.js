@@ -10,6 +10,12 @@ const ShowLost = ({auth, errors: authenticatedErrors, license, property_types, l
             Inertia.delete(route('licenses.losts.destroy', [license.id, lost.id]));
         }
     }
+
+    const confirmFoundLicense = (foundId) => {
+        if(confirm('آیا اطمینان دارید که این مدرک متعلق به شماست؟ ')){
+            Inertia.post(route('licenses.losts.match', [lost.id, foundId]));
+        }
+    }
     return (
         <Authenticated
             auth={auth}
@@ -76,6 +82,12 @@ const ShowLost = ({auth, errors: authenticatedErrors, license, property_types, l
                                             )
                                         })
                                     }
+                                    <Button
+                                        type={"button"}
+                                        handleClick={() => confirmFoundLicense(found.id)}
+                                    >
+                                        تایید مدرک
+                                    </Button>
                                 </div>
                             ))
                         }
