@@ -50,6 +50,7 @@ const CreateLosts = ({auth, errors: authenticatedErrors, license, property_types
                                                 message={errors[`${propertyName}.value`]}
                                             />
                                         }
+                                        <p className={"text-gray-700 italic text-sm"}>{propertyType.hint}</p>
                                         <Input
                                             name={propertyName}
                                             value={data[propertyName].value}
@@ -77,6 +78,7 @@ const CreateLosts = ({auth, errors: authenticatedErrors, license, property_types
                                                 message={errors[`${propertyName}.value`]}
                                             />
                                         }
+                                        <p className={"text-gray-700 italic text-sm"}>{propertyType.hint}</p>
                                         <Input
                                             type="file"
                                             name={propertyName}
