@@ -5713,6 +5713,9 @@ var CreateFounds = function CreateFounds(_ref) {
                   message: errors[propertyName]
                 }), errors["".concat(propertyName, ".value")] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_2__["default"], {
                   message: errors["".concat(propertyName, ".value")]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+                  className: "text-gray-700 italic text-sm",
+                  children: propertyType.hint
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
                   name: propertyName,
                   value: data[propertyName].value,
@@ -5733,6 +5736,9 @@ var CreateFounds = function CreateFounds(_ref) {
                   message: errors[propertyName]
                 }), errors["".concat(propertyName, ".value")] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_PersianError__WEBPACK_IMPORTED_MODULE_2__["default"], {
                   message: errors["".concat(propertyName, ".value")]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+                  className: "text-gray-700 italic text-sm",
+                  children: propertyType.hint
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
                   type: "file",
                   name: propertyName,
