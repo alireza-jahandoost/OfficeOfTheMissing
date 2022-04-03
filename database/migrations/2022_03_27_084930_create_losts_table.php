@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('license_id')->constrained()->onDelete('cascade');
-            $table->boolean('found')->default(false);
             $table->timestamps();
         });
     }
